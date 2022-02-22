@@ -82,9 +82,11 @@ export default function Offline(props) {
   const countSelect = (e)=>{
     if(props.amount ==='' && props.array.length >= 3){
       e.target.checked = false
+      alert('Mỗi người được chọn 3 ngành muốn trải nghiệm')
     }
     else if(props.amount !== '' && props.array.length >= 3 * props.amount){
       e.target.checked = false
+      alert('Bạn được chọn 3 ngành/người tham gia trải nghiệm')
     }
   }
 

@@ -214,3 +214,19 @@ div span label {
     height: auto;
   } 
 }
+@media screen and (max-width:600px){
+  .title_text_child {
+    font-size: 18px;
+  }
+  .type-experience select{
+    font-size: 12px;
+    width: 100%;
+  }
+  .title_text{
+    font-size: 20px;
+  }
+  .type-experience{
+    display: grid;
+    margin: 0;
+  }
+}

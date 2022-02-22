@@ -252,4 +252,7 @@
   .react-datepicker-wrapper{
     max-width: 100%;
   }
+  #tittle_off{
+    font-size: initial;
+  }
 }

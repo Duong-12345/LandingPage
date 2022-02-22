@@ -149,7 +149,6 @@ const Main = () => {
       });
     }
   };
-
   const messageSuccess = () => {
     if (
       submitted &&
@@ -257,6 +256,7 @@ const Main = () => {
                   name="name"
                   value={value.name}
                   onChange={handleName}
+                  required
                 ></input>
                 {submitted && !value.name && (
                   <p id="note_message">Please enter a name</p>
@@ -273,6 +273,7 @@ const Main = () => {
                   name="email"
                   value={value.email}
                   onChange={handleEmail}
+                  required
                 ></input>
                 {submitted && !value.email && (
                   <p id="note_message">Please enter a email</p>
@@ -286,6 +287,7 @@ const Main = () => {
                   name="phone"
                   value={value.phone}
                   onChange={handlePhone}
+                  required
                 ></input>
                 {submitted && !value.phone && (
                   <p id="note_message">Please enter a phone number</p>
@@ -312,6 +314,7 @@ const Main = () => {
                   name="province"
                   value={value.province}
                   onChange={handleProvince}
+                  required
                 ></input>
                 {submitted && !value.province && (
                   <p id="note_message">Please enter a province</p>
@@ -335,6 +338,7 @@ const Main = () => {
                   name="school"
                   value={value.school}
                   onChange={handleSchool}
+                  required
                 ></input>
                 {submitted && !value.school && (
                   <p id="note_message">Please enter a high school</p>
@@ -361,7 +365,7 @@ const Main = () => {
               day={value.day}
               submitted={submitted}
               handleDepartment={handleDepartment}
-              department={value.department.val}
+              department={value.department}
               change={change}
               array={value.array}
               status={on.status}

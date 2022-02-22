@@ -1,8 +1,6 @@
 import "./Offline.css";
 import React, { useState } from "react";
-// import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-// import moment from "moment";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { departmentLeft, departmentRight } from "./department";
@@ -33,6 +31,7 @@ export default function Offline(props) {
               onChange={props.handleAmount}
               value={props.amount}
               className="input"
+              required
             ></input>
           </div>
           {props.submitted && !props.amount && (
@@ -80,6 +79,15 @@ export default function Offline(props) {
   let third = first + 3;
   let last = first + 6;
 
+  const countSelect = (e)=>{
+    if(props.amount ==='' && props.array.length >= 3){
+      e.target.checked = false
+    }
+    else if(props.amount !== '' && props.array.length >= 3 * props.amount){
+      e.target.checked = false
+    }
+  }
+
   return (
     <div className="body_off">
       {showTitle()}
@@ -106,6 +114,7 @@ export default function Offline(props) {
                 return false;
               }}
               placeholderText="dd/MM/yyyy"
+              required
             />
             {props.submitted && props.day == null && (
               <p id="note_message_child">Please enter participation time</p>
@@ -129,7 +138,7 @@ export default function Offline(props) {
         </p>
         <div
           className="bound_container"
-          value={props.department}
+          value={props.department.val}
           onChange={props.handleDepartment}
         >
           <div className="container_left">
@@ -138,7 +147,7 @@ export default function Offline(props) {
               <b>{e.name}</b>
             </p> : <label className="container">
               <p>{e.name}</p>
-              <input type="checkbox" value={e.value}></input>
+              <input type="checkbox" value={e.value} onClick={countSelect} name='checkbox'></input>
               <span className="checkmark"></span>
             </label>
             ))}
@@ -149,7 +158,7 @@ export default function Offline(props) {
               <b>{e.name}</b>
             </p> : <label className="container">
               <p>{e.name}</p>
-              <input type="checkbox" value={e.value}></input>
+              <input type="checkbox" value={e.value} onClick={countSelect} name='checkbox'></input>
               <span className="checkmark"></span>
             </label>
             ))}

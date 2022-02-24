@@ -1,5 +1,5 @@
 const postData = async (data) => {
-  const URL = "https://615ab6234a360f0017a81212.mockapi.io/api/demo/Form";
+  const URL = "http://localhost:8080/api/v1/post-infor";
   return fetch(URL, {
     method: "POST",
     headers: { dataForm: "form/json" },

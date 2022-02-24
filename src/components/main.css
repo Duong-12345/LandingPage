@@ -43,6 +43,8 @@ p {
   color: white;
   font-weight: 600;
   font-size: larger;
+  border-radius: 7px 7px 0px 0px;
+  border-bottom: 0;
 }
 .bottom_child_left {
   width: 390px;
@@ -50,7 +52,8 @@ p {
   background-color: white;
   border: 1px solid black;
   border-radius: 7px;
-  /* padding: 0 0 0 34px; */
+  border-radius: 0px 7px 7px 7px;
+  padding: 7px;
 }
 .res_inf {
   display: flex;
@@ -103,7 +106,7 @@ div span label {
   margin-left: 28px;
 }
 
-#note_message{
+#note_message {
   color: red;
   margin: 0 0 0 32px;
 }
@@ -120,7 +123,7 @@ div span label {
   color: white;
 }
 
-@media screen and (max-width: 1560px) and (min-width:1408px){
+@media screen and (max-width: 1560px) and (min-width: 1408px) {
   .form_res_inf {
     margin: 0;
   }
@@ -131,17 +134,16 @@ div span label {
     width: 100%;
     margin: 0;
   }
-  
+
   div input {
     max-width: 100%;
   }
-  .form_res_name p{
-    margin:0
+  .form_res_name p {
+    margin: 0;
   }
 }
-@media screen and (max-width:1408px) and (min-width:1328px){
-  
-  div span label{
+@media screen and (max-width: 1408px) and (min-width: 1328px) {
+  div span label {
     margin-left: 0;
   }
   .form_res_name_input input {
@@ -151,15 +153,15 @@ div span label {
   .form_res_inf {
     margin: 0;
   }
-  .div input{
+  .div input {
     width: 100%;
   }
-  .form_res_name p{
-    margin:0
+  .form_res_name p {
+    margin: 0;
   }
 }
-@media screen and (max-width:1328px){
-  div span label{
+@media screen and (max-width: 1328px) {
+  div span label {
     margin-left: 0;
   }
   .form_res_name_input input {
@@ -169,41 +171,41 @@ div span label {
   .form_res_inf {
     margin: 0;
   }
-  div input{
+  div input {
     width: 100%;
-    
+
     margin-left: 0;
   }
-  
-  .res_inf_input{
-    margin-left:0
+
+  .res_inf_input {
+    margin-left: 0;
   }
-  .res_inf input{
+  .res_inf input {
     width: 500px;
   }
-  .form_res_name p{
-    margin:0
+  .form_res_name p {
+    margin: 0;
   }
 }
-@media screen and (max-width:1268px){
+@media screen and (max-width: 1268px) {
   .res_inf {
     flex-direction: column;
     /* display: contents; */
   }
-  .res_inf span{
+  .res_inf span {
     margin: 10px auto;
     width: 100%;
   }
-  .res_inf input{
+  .res_inf input {
     width: 100%;
   }
-  .form_res_name_input{
+  .form_res_name_input {
     width: 100%;
     flex-direction: column;
     display: flex;
   }
-  .form_res_name p{
-    margin:0
+  .form_res_name p {
+    margin: 0;
   }
   .bottom_child_left {
     width: 100%;
@@ -212,20 +214,29 @@ div span label {
   .bottom_child_right {
     width: 100%;
     height: auto;
-  } 
+  }
 }
-@media screen and (max-width:600px){
+@media screen and (max-width: 865px) {
+  .form_register{
+    display: inline-block;
+  }
+  .left_block{
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (max-width: 600px) {
   .title_text_child {
     font-size: 18px;
   }
-  .type-experience select{
+  .type-experience select {
     font-size: 12px;
     width: 100%;
   }
-  .title_text{
+  .title_text {
     font-size: 20px;
   }
-  .type-experience{
+  .type-experience {
     display: grid;
     margin: 0;
   }

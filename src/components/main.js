@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {  postDataForm } from "../actions/actionSend";
-import { getProvince } from "../actions/actionGetProvince";
+import { postDataForm } from "../actions/actionSend";
+import { getProvince, getDistrict } from "../actions/actionGetProvince";
 import "./main.css";
 import Offline from "./Offline";
 import { getSchool } from "../actions/actionGetSchool";
@@ -22,6 +22,7 @@ const Main = () => {
     },
     array: [],
     time: "",
+    district: "",
   });
   const handleName = (e) => {
     e.persist();
@@ -51,6 +52,13 @@ const Main = () => {
       province: e.target.value,
     }));
   };
+  const handleDistrict = (e) => {
+    e.persist();
+    setValue((value) => ({
+      ...value,
+      district: e.target.value,
+    }));
+  };
   const handleSchool = (e) => {
     e.persist();
     setValue((value) => ({
@@ -76,14 +84,18 @@ const Main = () => {
 
   const [submitted, setSubmitted] = useState(false);
   const dataProvince = useSelector(
-    (state) => state.provinceReducer.dataProvince
+    (state) => state.provinceReducer.dataProvince.data
+  );
+  const dataDistrict = useSelector(
+    (state) => state.districtReducer.dataDistrict.data
   );
   const dataSchool = useSelector(
-    (state) => state.schoolReducer.dataSchool
+    (state) => state.schoolReducer.dataSchool.data
   );
   useEffect(() => {
     getProvince(dispatch);
-    getSchool(dispatch)
+    getSchool(dispatch);
+    getDistrict(dispatch);
   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -97,9 +109,9 @@ const Main = () => {
       school: value.school,
       date: value.day,
       amount: value.amount,
-      array: value.array,
+      // array: value.array,
       time: value.time,
-      state: initSelect.value
+      state: initSelect.value,
     };
     postDataForm(data, dispatch);
   };
@@ -126,7 +138,6 @@ const Main = () => {
     if (!e.target.checked) {
       let tmp = value.array;
       let index = tmp.indexOf(e.target.value);
-      // console.log(index)
       if (index !== -1) {
         tmp.splice(index, 1);
       }
@@ -169,6 +180,39 @@ const Main = () => {
       return null;
     } else return <div className="success-message">Bạn đã gửi thành công</div>;
   };
+
+  var inputText = value.province;
+  const processText = (inputText) => {
+    var output = [];
+    var json = inputText.split(" ");
+    json.forEach(function (item) {
+      output.push(item.replace(/\'/g, "").split(/(\d+)/).filter(Boolean));
+    });
+    if (output !== []) {
+      var newProvince = Number(output[3]);
+    }
+    return newProvince;
+  };
+  var inputText1 = value.district;
+  const processText1 = (inputText1) => {
+    var output = [];
+    var json = inputText1.split(" ");
+    json.forEach(function (item) {
+      output.push(item.replace(/\'/g, "").split(/(\d+)/).filter(Boolean));
+    });
+    if (output !== []) {
+      var newDistrict = Number(output.pop());
+    }
+    return newDistrict;
+  };
+
+  const filterDistrict = dataDistrict?.filter(
+    (dis) => dis.provinceCode == processText(inputText)
+  );
+  const filterSchool = dataSchool?.filter(
+    (sch) => sch.districtCode == processText1(inputText1) && sch.provinceCode == processText(inputText)
+  );
+  console.log(processText1(inputText1))
   return (
     <div className="main">
       <div className="body">
@@ -247,7 +291,7 @@ const Main = () => {
         <p className="title_text_child">THÔNG TIN ĐĂNG KÝ</p>
         <form onSubmit={handleSubmit}>
           <div className="form_res_inf">
-            <div className="form_res_name">
+            {/* <div className="form_res_name">
               <div className="form_res_name_input">
                 <label>Họ và tên:</label>
                 <input
@@ -263,20 +307,20 @@ const Main = () => {
                 )}
               </div>
               <p>(Nếu nhóm 2 người trở lên chỉ để tên một đại diện)</p>
-            </div>
+            </div> */}
             <div className="res_inf">
               <span>
-                <label>Email:</label>
+                <label>Họ và tên:</label>
                 <input
-                  type="email"
-                  placeholder="abc@gmail.com"
-                  name="email"
-                  value={value.email}
-                  onChange={handleEmail}
+                  type="text"
+                  placeholder="Nguyễn Văn A"
+                  name="name"
+                  value={value.name}
+                  onChange={handleName}
                   required
                 ></input>
-                {submitted && !value.email && (
-                  <p id="note_message">Please enter a email</p>
+                {submitted && !value.name && (
+                  <p id="note_message">Please enter a name</p>
                 )}
               </span>
               <span>
@@ -296,12 +340,28 @@ const Main = () => {
             </div>
             <div className="res_inf">
               <span>
+                <label className="res_inf_email">Email:</label>
+                <input
+                  type="email"
+                  placeholder="abc@gmail.com"
+                  name="email"
+                  value={value.email}
+                  onChange={handleEmail}
+                  required
+                ></input>
+                {submitted && !value.email && (
+                  <p id="note_message">Please enter a email</p>
+                )}
+              </span>
+              <span>
                 <label>Tỉnh:</label>
                 <>
                   {
                     <datalist id="province">
-                      {dataProvince.map((e) => (
-                        <option>{e.province}</option>
+                      {dataProvince?.map((e) => (
+                        <option value={e.name + " - " + e.code}>
+                          {e.name}
+                        </option>
                       ))}
                     </datalist>
                   }
@@ -313,10 +373,39 @@ const Main = () => {
                   placeholder="province"
                   name="province"
                   value={value.province}
-                  onChange={handleProvince}
+                  onChange={(val) => handleProvince(val)}
                   required
                 ></input>
+
                 {submitted && !value.province && (
+                  <p id="note_message">Please enter a province</p>
+                )}
+              </span>
+            </div>
+            <div className="res_inf">
+              <span>
+                <label className="res_inf_district">Quận/Huyện:</label>
+                <>
+                  {
+                    <datalist id="district">
+                      {filterDistrict?.map((e) => (
+                        <option value={e.name + " - " + e.code}>{e.name}</option>
+                      ))}
+                    </datalist>
+                  }
+                </>
+                <input
+                  className="res_inf_input"
+                  type="text"
+                  list="district"
+                  placeholder="district"
+                  name="district"
+                  value={value.district}
+                  onChange={(val) => handleDistrict(val)}
+                  required
+                ></input>
+
+                {submitted && !value.district && (
                   <p id="note_message">Please enter a province</p>
                 )}
               </span>
@@ -325,8 +414,8 @@ const Main = () => {
                 <>
                   {
                     <datalist id="school">
-                      {dataSchool.map((e) => (
-                        <option>{e.school}</option>
+                      {filterSchool?.map((e) => (
+                        <option value={e.name}></option>
                       ))}
                     </datalist>
                   }

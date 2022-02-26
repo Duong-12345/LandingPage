@@ -1,8 +1,11 @@
 const postData = async (data) => {
   const URL = "http://localhost:8080/api/v1/post-infor";
+  console.log(JSON.stringify(data));
   return fetch(URL, {
     method: "POST",
-    headers: { dataForm: "form/json" },
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(data),
   }).then((response) => Promise.all([response, response.json()]));
 };
@@ -33,4 +36,3 @@ export const postDataForm = async (data, dispatch) => {
     dispatch(postDataError());
   }
 };
-

@@ -103,9 +103,14 @@ div span label {
   font-family: fangsong;
 }
 .res_inf_input {
-  margin-left: 28px;
+  margin-left: 20px;
 }
-
+.res_inf_district{
+  margin-left: 8px;
+}
+.res_inf_email{
+  margin-left: 63px;
+}
 #note_message {
   color: red;
   margin: 0 0 0 32px;
@@ -141,6 +146,9 @@ div span label {
   .form_res_name p {
     margin: 0;
   }
+  .res_inf_email{
+    margin:0
+  }
 }
 @media screen and (max-width: 1408px) and (min-width: 1328px) {
   div span label {
@@ -158,6 +166,9 @@ div span label {
   }
   .form_res_name p {
     margin: 0;
+  }
+  .res_inf_email{
+    margin:0
   }
 }
 @media screen and (max-width: 1328px) {
@@ -184,6 +195,9 @@ div span label {
     width: 500px;
   }
   .form_res_name p {
+    margin: 0;
+  }
+  .res_inf_email{
     margin: 0;
   }
 }
@@ -215,6 +229,9 @@ div span label {
     width: 100%;
     height: auto;
   }
+  .res_inf_email{
+    margin:0
+  }
 }
 @media screen and (max-width: 865px) {
   .form_register{
@@ -223,6 +240,7 @@ div span label {
   .left_block{
     margin-bottom: 15px;
   }
+  
 }
 
 @media screen and (max-width: 600px) {

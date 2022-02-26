@@ -2,7 +2,8 @@
 const initState = {
     isFetching: false,
     dataProvince:[],
-    dataSchool:[]
+    dataSchool:[],
+    dataDistrict:[]
 }
 
 export const dataReducer = (state=initState, action)=>{
@@ -46,6 +47,31 @@ export const provinceReducer = (state=initState, action)=>{
             }
         }
         case 'GET_PROVINCE_ERROR':{
+            return {
+                ...state,
+                isFetching: false
+            }
+        }
+        default:
+            return state
+    }
+}
+export const districtReducer = (state=initState, action)=>{
+    switch(action.type){
+        case 'GET_DISTRICT_REQUEST':{
+            return {
+                ...state,
+                isFetching: true
+            }
+        }
+        case 'GET_DISTRICT_SUCCESS':{
+            return {
+                ...state,
+                isFetching: false,
+                dataDistrict: action.payload
+            }
+        }
+        case 'GET_DISTRICT_ERROR':{
             return {
                 ...state,
                 isFetching: false

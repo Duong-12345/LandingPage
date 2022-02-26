@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
-import { dataReducer, provinceReducer, shoolReducer } from "./dataReducer";
+import { dataReducer, districtReducer, provinceReducer, shoolReducer } from "./dataReducer";
 const rootReducer = combineReducers({
     dataForm: dataReducer,
     provinceReducer: provinceReducer,
-    schoolReducer: shoolReducer
+    schoolReducer: shoolReducer,
+    districtReducer: districtReducer
 });
 export default rootReducer;
 

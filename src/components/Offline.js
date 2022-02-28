@@ -97,22 +97,22 @@ export default function Offline(props) {
   const dataProgram= useSelector(
     (state) => state.programReducer.dataProgram.data
   );
-   dataProgram.forEach(element => {
-    dataDepartment.forEach(dep=>{
-      if(element.departmentCode===dep.code){
-        element.nameDepartment = dep.name
-      }
-    })
-  });
+  //  dataProgram?.forEach(element => {
+  //   dataDepartment.forEach(dep=>{
+  //     if(element.departmentCode===dep.code){
+  //       element.nameDepartment = dep.name
+  //     }
+  //   })
+  // });
   
-  dataDepartment?.forEach(element => {
-    dataProgram?.forEach(dep=>{
-      if(element.code===dep.departmentCode){
-        var rong = []
-        element.nameProgram= rong.push(dep.name)
-      }
-    })
-  });
+  // dataDepartment?.forEach(element => {
+  //   dataProgram?.forEach(dep=>{
+  //     if(element.code===dep.departmentCode){
+  //       var rong = []
+  //       element.nameProgram= rong.push(dep.name)
+  //     }
+  //   })
+  // });
   // const dataDepartmentLeft = dataProgram.slice(0,13)
 // console.log('đấ')
   return (

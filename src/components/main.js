@@ -6,6 +6,7 @@ import "./main.css";
 import Offline from "./Offline";
 import { getSchool } from "../actions/actionGetSchool";
 import { getDepartment, getProgram } from "../actions/actionGetDepartment";
+import { Helmet } from "react-helmet";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -70,7 +71,7 @@ const Main = () => {
   const handleDay = (e, time) => {
     setValue({
       ...value,
-      day:e,
+      day: e,
       time,
     });
   };
@@ -118,7 +119,7 @@ const Main = () => {
       districtCode: value.district,
       departmentCodes: value.department.val,
     };
-    console.log(data.date)
+    console.log(data.date);
     postDataForm(data, dispatch);
   };
   const [initSelect, setInitSelect] = useState(() => {
@@ -223,6 +224,9 @@ const Main = () => {
   // console.log(processText1(inputText1));
   return (
     <div className="main">
+      <Helmet>
+        <title>PHENIKAA CAMPUS VISIT</title>
+      </Helmet>
       <div className="body">
         <div className="img_head">
           <span className="img_head_left">

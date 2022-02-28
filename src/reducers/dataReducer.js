@@ -3,7 +3,9 @@ const initState = {
     isFetching: false,
     dataProvince:[],
     dataSchool:[],
-    dataDistrict:[]
+    dataDistrict:[],
+    dataDepartment:[],
+    dataProgram:[],
 }
 
 export const dataReducer = (state=initState, action)=>{
@@ -106,4 +108,55 @@ export const shoolReducer = (state=initState, action)=>{
             return state
     }
 }
+export const departmentReducer = (state=initState, action)=>{
+    switch(action.type){
+        case 'GET_DEPARTMENT_REQUEST':{
+            return {
+                ...state,
+                isFetching: true
+            }
+        }
+        case 'GET_DEPARTMENT_SUCCESS':{
+            return {
+                ...state,
+                isFetching: false,
+                dataDepartment: action.payload
+            }
+        }
+        case 'GET_DEPARTMENT_ERROR':{
+            return {
+                ...state,
+                isFetching: false
+            }
+        }
+        default:
+            return state
+    }
+}
+export const programReducer = (state=initState, action)=>{
+    switch(action.type){
+        case 'GET_PROGRAM_REQUEST':{
+            return {
+                ...state,
+                isFetching: true
+            }
+        }
+        case 'GET_PROGRAM_SUCCESS':{
+            return {
+                ...state,
+                isFetching: false,
+                dataProgram: action.payload
+            }
+        }
+        case 'GET_PROGRAM_ERROR':{
+            return {
+                ...state,
+                isFetching: false
+            }
+        }
+        default:
+            return state
+    }
+}
+
 

@@ -5,6 +5,7 @@ import { getProvince, getDistrict } from "../actions/actionGetProvince";
 import "./main.css";
 import Offline from "./Offline";
 import { getSchool } from "../actions/actionGetSchool";
+import { getDepartment, getProgram } from "../actions/actionGetDepartment";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -69,7 +70,7 @@ const Main = () => {
   const handleDay = (e, time) => {
     setValue({
       ...value,
-      day: e,
+      day:e,
       time,
     });
   };
@@ -96,6 +97,8 @@ const Main = () => {
     getProvince(dispatch);
     getSchool(dispatch);
     getDistrict(dispatch);
+    getDepartment(dispatch);
+    getProgram(dispatch);
   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -104,15 +107,18 @@ const Main = () => {
     const data = {
       name: value.name,
       email: value.email,
-      phoneNumber: value.phone,
-      province: value.province,
-      school: value.school,
-      date: value.day,
-      amount: value.amount,
-      // array: value.array,
+      phone: value.phone,
+      provinceCode: value.province,
+      schoolCode: value.school,
+      date: Date(value.day),
+      numberOfParticipant: Number(value.amount),
+      // programCodes: value.array,
       time: value.time,
-      state: initSelect.value,
+      type: initSelect.value,
+      districtCode: value.district,
+      departmentCodes: value.department.val,
     };
+    console.log(data.date)
     postDataForm(data, dispatch);
   };
   const [initSelect, setInitSelect] = useState(() => {
@@ -210,9 +216,11 @@ const Main = () => {
     (dis) => dis.provinceCode == processText(inputText)
   );
   const filterSchool = dataSchool?.filter(
-    (sch) => sch.districtCode == processText1(inputText1) && sch.provinceCode == processText(inputText)
+    (sch) =>
+      sch.districtCode == processText1(inputText1) &&
+      sch.provinceCode == processText(inputText)
   );
-  console.log(processText1(inputText1))
+  // console.log(processText1(inputText1));
   return (
     <div className="main">
       <div className="body">
@@ -389,7 +397,9 @@ const Main = () => {
                   {
                     <datalist id="district">
                       {filterDistrict?.map((e) => (
-                        <option value={e.name + " - " + e.code}>{e.name}</option>
+                        <option value={e.name + " - " + e.code}>
+                          {e.name}
+                        </option>
                       ))}
                     </datalist>
                   }

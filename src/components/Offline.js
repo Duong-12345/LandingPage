@@ -4,6 +4,7 @@ import "react-calendar/dist/Calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { departmentLeft, departmentRight } from "./department";
+import { useSelector } from "react-redux";
 
 export default function Offline(props) {
   const [selectedDate, setSelectedDate] = useState(props.day);
@@ -90,6 +91,30 @@ export default function Offline(props) {
     }
   }
 
+  const dataDepartment = useSelector(
+    (state) => state.departmentReducer.dataDepartment.data
+  );
+  const dataProgram= useSelector(
+    (state) => state.programReducer.dataProgram.data
+  );
+   dataProgram.forEach(element => {
+    dataDepartment.forEach(dep=>{
+      if(element.departmentCode===dep.code){
+        element.nameDepartment = dep.name
+      }
+    })
+  });
+  
+  dataDepartment?.forEach(element => {
+    dataProgram?.forEach(dep=>{
+      if(element.code===dep.departmentCode){
+        var rong = []
+        element.nameProgram= rong.push(dep.name)
+      }
+    })
+  });
+  // const dataDepartmentLeft = dataProgram.slice(0,13)
+// console.log('đấ')
   return (
     <div className="body_off">
       {showTitle()}
@@ -153,6 +178,18 @@ export default function Offline(props) {
               <span className="checkmark"></span>
             </label>
             ))}
+            {/* {dataDepartmentLeft.map(e=>(
+              <>
+               <p>
+              <b>{e.nameDepartment}</b>
+            </p>
+            <label className="container">
+              <p>{e.name}</p>
+              <input type="checkbox" value={e.value} onClick={countSelect} name='checkbox'></input>
+              <span className="checkmark"></span>
+            </label>
+              </>
+            ))} */}
           </div>
           <div className="container_right">
             {departmentRight.map(e=>(

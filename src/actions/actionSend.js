@@ -1,5 +1,5 @@
 const postData = async (data) => {
-  const URL = "http://localhost:8080/api/v1/post-infor";
+  const URL = "http://10.20.2.201:5000/registration";
   console.log(JSON.stringify(data));
   return fetch(URL, {
     method: "POST",

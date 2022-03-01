@@ -146,9 +146,9 @@ div span label {
   .form_res_name p {
     margin: 0;
   }
-  .res_inf_email{
+  /* .res_inf_email{
     margin:0
-  }
+  } */
 }
 @media screen and (max-width: 1408px) and (min-width: 1328px) {
   div span label {
@@ -240,7 +240,7 @@ div span label {
   .left_block{
     margin-bottom: 15px;
   }
-  
+
 }
 
 @media screen and (max-width: 600px) {

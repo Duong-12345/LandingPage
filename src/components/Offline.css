@@ -179,7 +179,7 @@
     margin-left: 0;
   }
   .container p {
-    word-break: break-all;
+    /* word-break: break-all; */
     display: flex;
   }
   .form_off div input {

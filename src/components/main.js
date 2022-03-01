@@ -22,7 +22,12 @@ const Main = () => {
       val: "",
       checked: null,
     },
-    array: [],
+    program: {
+      val: "",
+      checked: null,
+    },
+    arrayProgram: [],
+    arrayDepartment: [],
     time: "",
     district: "",
   });
@@ -113,11 +118,11 @@ const Main = () => {
       schoolCode: value.school,
       date: Date(value.day),
       numberOfParticipant: Number(value.amount),
-      // programCodes: value.array,
       time: value.time,
       type: initSelect.value,
       districtCode: value.district,
-      departmentCodes: value.department.val,
+      programCodes: value.arrayProgram,
+      departmentCodes: value.arrayDepartment,
     };
     console.log(data.date);
     postDataForm(data, dispatch);
@@ -139,12 +144,42 @@ const Main = () => {
     }));
     return on;
   };
-
-  const handleDepartment = (e) => {
+console.log(value.arrayProgram)
+  const handleProgram = (e) => {
+    console.log(e)
     e.persist();
     if (!e.target.checked) {
-      let tmp = value.array;
+      let tmp = value.arrayProgram;
       let index = tmp.indexOf(e.target.value);
+      if (index !== -1) {
+        tmp.splice(index, 1);
+      }
+      setValue({
+        ...value,
+        program: {
+          val: e.target.val,
+          checked: e.target.checked,
+        },
+        arrayProgram: tmp,
+      });
+    } else {
+      setValue({
+        ...value,
+        program: {
+          val: e.target.value,
+          checked: e.target.checked,
+        },
+        arrayProgram: [...value.arrayProgram, e.target.value],
+      });
+    }
+  };
+  const handleDepartment = (e) => {
+    console.log(e)
+
+    e.persist();
+    if (!e.target.checked) {
+      let tmp = value.arrayDepartment;
+      let index = tmp.indexOf(e.target.name);
       if (index !== -1) {
         tmp.splice(index, 1);
       }
@@ -154,16 +189,16 @@ const Main = () => {
           val: e.target.val,
           checked: e.target.checked,
         },
-        array: tmp,
+        arrayDepartment: tmp,
       });
     } else {
       setValue({
         ...value,
         department: {
-          val: e.target.value,
+          val: e.target.name,
           checked: e.target.checked,
         },
-        array: [...value.array, e.target.value],
+        arrayDepartment: [...value.arrayDepartment, e.target.name],
       });
     }
   };
@@ -175,7 +210,7 @@ const Main = () => {
         !value.phone ||
         !value.province ||
         !value.school ||
-        !value.array.length ||
+        !value.arrayProgram.length ||
         !value.day)
     ) {
       return (
@@ -467,10 +502,13 @@ const Main = () => {
               amount={value.amount}
               day={value.day}
               submitted={submitted}
+              handleProgram={handleProgram}
               handleDepartment={handleDepartment}
+              program={value.program}
               department={value.department}
               change={change}
-              array={value.array}
+              arrayProgram={value.arrayProgram}
+              arrayDepartment={value.arrayDepartment}
               status={on.status}
               time={value.time}
             />

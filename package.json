@@ -15,6 +15,7 @@
     "react-helmet": "^6.1.0",
     "react-redux": "^7.2.6",
     "react-scripts": "5.0.0",
+    "react-select": "^5.2.2",
     "redux": "^4.1.2",
     "web-vitals": "^2.1.4"
   },
@@ -41,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "url-loader": "^4.1.1"
   }
 }

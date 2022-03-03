@@ -7,6 +7,7 @@ import Offline from "./Offline";
 import { getSchool } from "../actions/actionGetSchool";
 import { getDepartment, getProgram } from "../actions/actionGetDepartment";
 import { Helmet } from "react-helmet";
+import moment from 'moment';
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const Main = () => {
     phone: "",
     email: "",
     province: "",
+    provinceCode:"",
     school: "",
     day: null,
     amount: "",
@@ -106,6 +108,9 @@ const Main = () => {
     getDepartment(dispatch);
     getProgram(dispatch);
   }, []);
+  const arrayDepartmentFix = [...new Set(value.arrayDepartment)];
+  const date = moment(value.day).format('YYYY-MM-DDThh:mm:ssZ')
+  console.log(date)
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
@@ -114,17 +119,16 @@ const Main = () => {
       name: value.name,
       email: value.email,
       phone: value.phone,
-      provinceCode: value.province,
-      schoolCode: value.school,
-      date: Date(value.day),
+      provinceCode: processText(inputText),
+      schoolCode: processText3(inputText3),
+      date: date,
       numberOfParticipant: Number(value.amount),
       time: value.time,
       type: initSelect.value,
-      districtCode: value.district,
+      districtCode: processText1(inputText1),
       programCodes: value.arrayProgram,
-      departmentCodes: value.arrayDepartment,
+      departmentCodes: arrayDepartmentFix,
     };
-    console.log(data.date);
     postDataForm(data, dispatch);
   };
   const [initSelect, setInitSelect] = useState(() => {
@@ -144,9 +148,9 @@ const Main = () => {
     }));
     return on;
   };
-console.log(value.arrayProgram)
+  console.log(value.arrayProgram);
   const handleProgram = (e) => {
-    console.log(e)
+    console.log(e);
     e.persist();
     if (!e.target.checked) {
       let tmp = value.arrayProgram;
@@ -174,7 +178,7 @@ console.log(value.arrayProgram)
     }
   };
   const handleDepartment = (e) => {
-    console.log(e)
+    console.log(e);
 
     e.persist();
     if (!e.target.checked) {
@@ -247,6 +251,18 @@ console.log(value.arrayProgram)
     }
     return newDistrict;
   };
+  var inputText3 = value.school;
+  const processText3 = (inputText3) => {
+    var output = [];
+    var json = inputText3.split(" ");
+    json.forEach(function (item) {
+      output.push(item.replace(/\'/g, "").split(/(\d+)/).filter(Boolean));
+    });
+    if (output !== []) {
+      var newDistrict = Number(output.pop());
+    }
+    return newDistrict;
+  };
 
   const filterDistrict = dataDistrict?.filter(
     (dis) => dis.provinceCode == processText(inputText)
@@ -256,7 +272,7 @@ console.log(value.arrayProgram)
       sch.districtCode == processText1(inputText1) &&
       sch.provinceCode == processText(inputText)
   );
-  // console.log(processText1(inputText1));
+  console.log(value.province);
   return (
     <div className="main">
       <Helmet>
@@ -360,7 +376,7 @@ console.log(value.arrayProgram)
                 <label>Họ và tên:</label>
                 <input
                   type="text"
-                  placeholder="Nguyễn Văn A"
+                  placeholder="(Nếu nhóm 2 người trở lên chỉ để tên một đại diện)"
                   name="name"
                   value={value.name}
                   onChange={handleName}
@@ -400,14 +416,13 @@ console.log(value.arrayProgram)
                   <p id="note_message">Please enter a email</p>
                 )}
               </span>
-              <span>
+              <span name = {value.provinceCode}>
                 <label>Tỉnh:</label>
                 <>
                   {
                     <datalist id="province">
                       {dataProvince?.map((e) => (
-                        <option value={e.name + " - " + e.code}>
-                          {e.name}
+                        <option value={e.name + " - " + e.code} name={e.code}>
                         </option>
                       ))}
                     </datalist>
@@ -418,12 +433,22 @@ console.log(value.arrayProgram)
                   type="text"
                   list="province"
                   placeholder="province"
-                  name="province"
+                  // name={}
                   value={value.province}
                   onChange={(val) => handleProvince(val)}
                   required
                 ></input>
-
+                {/* <Select
+                value={{
+                  value: value.province,
+                  label: value.province,
+                }}
+                options={dataProvince?.map(e=>({
+                  label: e,
+                  value: e
+                }))}
+                /> */}
+                
                 {submitted && !value.province && (
                   <p id="note_message">Please enter a province</p>
                 )}
@@ -437,7 +462,6 @@ console.log(value.arrayProgram)
                     <datalist id="district">
                       {filterDistrict?.map((e) => (
                         <option value={e.name + " - " + e.code}>
-                          {e.name}
                         </option>
                       ))}
                     </datalist>
@@ -464,7 +488,7 @@ console.log(value.arrayProgram)
                   {
                     <datalist id="school">
                       {filterSchool?.map((e) => (
-                        <option value={e.name}></option>
+                        <option value={e.name + " - " + e.code}></option>
                       ))}
                     </datalist>
                   }
@@ -516,13 +540,8 @@ console.log(value.arrayProgram)
           <input type="submit" name="" value="Gửi" className="send" />
         </form>
       </div>
-      <span className="img_head_left">
-        <img
-          src="./img/imgBottom.png"
-          alt="logo1"
-          width="100%"
-          height="auto"
-        ></img>
+      <span className="img_bottom">
+        <img src="./img/smt.png" alt="logo1" width="100%" height="auto"></img>
       </span>
     </div>
   );

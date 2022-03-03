@@ -83,14 +83,14 @@ export default function Offline(props) {
   let second = first + 1;
   let third = first + 3;
   let last = first + 6;
-
+// console.log(props.arrayProgram)
   const countSelect = (e) => {
     if (props.amount === "" && props.arrayProgram.length >= 3) {
       e.target.checked = false;
-      alert("Mỗi người được chọn 3 ngành muốn trải nghiệm");
+      // alert("Mỗi người chỉ được chọn 3 ngành muốn trải nghiệm");
     } else if (props.amount !== "" && props.arrayProgram.length >= 3 * props.amount) {
       e.target.checked = false;
-      alert("Bạn được chọn 3 ngành/người tham gia trải nghiệm");
+      // alert("Bạn được chọn 3 ngành/người tham gia trải nghiệm");
     }
   };
 

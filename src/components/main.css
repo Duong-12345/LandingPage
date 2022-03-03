@@ -1,7 +1,13 @@
 .main {
-  /* background-color: #acdee7; */
   background-image: linear-gradient(to bottom, #acdee7, rgba(255, 0, 0, 0));
   width: 100%;
+  height: 100%;
+  background-image: url("../assets/images/background.png");
+  /* min-width: 100%;
+  min-height: 100%;
+  background-position: center; */
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .body {
   width: 80%;
@@ -9,6 +15,12 @@
 }
 .img_head_left {
   width: fit-content;
+}
+.img_bottom {
+  width: fit-content;
+}
+.img_bottom img {
+  /* visibility: hidden; */
 }
 .img_head_right {
   width: fit-content;
@@ -28,6 +40,9 @@
 }
 p {
   text-align: left;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+  line-height: 1.7em;
 }
 .form_register {
   display: flex;
@@ -67,6 +82,7 @@ p {
 }
 div label {
   font-weight: bolder;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 div input {
   height: 41px;
@@ -98,18 +114,19 @@ div span label {
   margin-top: 40px;
 }
 .type-experience select {
-  font-size: 2vw;
+  font-size: larger;
   border-radius: 10px;
-  font-family: fangsong;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 .res_inf_input {
   margin-left: 20px;
 }
-.res_inf_district{
+.res_inf_district {
   margin-left: 8px;
 }
-.res_inf_email{
-  margin-left: 63px;
+.res_inf_email {
+  margin-left: 61px;
 }
 #note_message {
   color: red;
@@ -167,8 +184,8 @@ div span label {
   .form_res_name p {
     margin: 0;
   }
-  .res_inf_email{
-    margin:0
+  .res_inf_email {
+    margin: 0;
   }
 }
 @media screen and (max-width: 1328px) {
@@ -197,7 +214,7 @@ div span label {
   .form_res_name p {
     margin: 0;
   }
-  .res_inf_email{
+  .res_inf_email {
     margin: 0;
   }
 }
@@ -229,18 +246,23 @@ div span label {
     width: 100%;
     height: auto;
   }
-  .res_inf_email{
-    margin:0
+  .res_inf_email {
+    margin: 0;
+  }
+  .main {
+    background-image: linear-gradient(to bottom, #acdee5, rgba(255, 0, 0, 0));
   }
 }
 @media screen and (max-width: 865px) {
-  .form_register{
+  .form_register {
     display: inline-block;
   }
-  .left_block{
+  .left_block {
     margin-bottom: 15px;
   }
-
+  .img_bottom img {
+    /* visibility: hidden; */
+  }
 }
 
 @media screen and (max-width: 600px) {

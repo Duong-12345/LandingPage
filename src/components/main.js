@@ -7,7 +7,7 @@ import Offline from "./Offline";
 import { getSchool } from "../actions/actionGetSchool";
 import { getDepartment, getProgram } from "../actions/actionGetDepartment";
 import { Helmet } from "react-helmet";
-import moment from 'moment';
+import moment from "moment";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const Main = () => {
     phone: "",
     email: "",
     province: "",
-    provinceCode:"",
+    provinceCode: "",
     school: "",
     day: null,
     amount: "",
@@ -109,8 +109,8 @@ const Main = () => {
     getProgram(dispatch);
   }, []);
   const arrayDepartmentFix = [...new Set(value.arrayDepartment)];
-  const date = moment(value.day).format('YYYY-MM-DDThh:mm:ssZ')
-  console.log(date)
+  const date = moment(value.day).format("YYYY-MM-DDThh:mm:ssZ");
+  console.log(date);
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
@@ -339,7 +339,7 @@ const Main = () => {
             <div className="bottom_child_left">
               <ul>
                 <li>
-                  <p>09:00 _ 10:00 sáng Chủ Nhật hàng tuần.</p>
+                  <p>09:00 - 10:00 sáng Chủ Nhật hàng tuần.</p>
                 </li>
               </ul>
             </div>
@@ -350,7 +350,7 @@ const Main = () => {
           <b>Phòng Tuyển sinh và Truyền thông</b>
         </p>
         <p>0946.906.552 (Ms Hằng)</p>
-        <p>truyenthong@phenikaa_uni.edu.vn</p>
+        <p>truyenthong@phenikaa-uni.edu.vn</p>
         <p className="title_text_child">THÔNG TIN ĐĂNG KÝ</p>
         <form onSubmit={handleSubmit}>
           <div className="form_res_inf">
@@ -416,14 +416,16 @@ const Main = () => {
                   <p id="note_message">Please enter a email</p>
                 )}
               </span>
-              <span name = {value.provinceCode}>
+              <span name={value.provinceCode}>
                 <label>Tỉnh:</label>
                 <>
                   {
                     <datalist id="province">
                       {dataProvince?.map((e) => (
-                        <option value={e.name + " - " + e.code} name={e.code}>
-                        </option>
+                        <option
+                          value={e.name + " - " + e.code}
+                          name={e.code}
+                        ></option>
                       ))}
                     </datalist>
                   }
@@ -448,7 +450,7 @@ const Main = () => {
                   value: e
                 }))}
                 /> */}
-                
+
                 {submitted && !value.province && (
                   <p id="note_message">Please enter a province</p>
                 )}
@@ -461,8 +463,7 @@ const Main = () => {
                   {
                     <datalist id="district">
                       {filterDistrict?.map((e) => (
-                        <option value={e.name + " - " + e.code}>
-                        </option>
+                        <option value={e.name + " - " + e.code}></option>
                       ))}
                     </datalist>
                   }

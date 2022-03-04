@@ -1,13 +1,25 @@
+.background {
+  /* background-image: url("../assets/images/background.png"); */
+  background-image: linear-gradient(to bottom, #acdee5, rgba(255, 0, 0, 0));
+  background-size: cover;
+  width: 70%;
+  margin: auto;
+}
+
 .main {
-  background-image: linear-gradient(to bottom, #acdee7, rgba(255, 0, 0, 0));
+  position: relative;
+  /* background-image: linear-gradient(to bottom, #acdee7, rgba(255, 0, 0, 0)); */
   width: 100%;
   height: 100%;
-  background-image: url("../assets/images/background.png");
+  /* background-image: url("../assets/images/background.png"); */
+  /* background-image: linear-gradient(to bottom, #acdee5, rgba(255, 0, 0, 0)); */
   /* min-width: 100%;
   min-height: 100%;
   background-position: center; */
   background-size: cover;
   background-repeat: no-repeat;
+  padding-bottom: 50vw;
+  z-index: 1;
 }
 .body {
   width: 80%;
@@ -86,12 +98,14 @@ div label {
 }
 div input {
   height: 41px;
-  width: 400px;
+  /* width: 400px; */
+  width: 246px;
   margin-left: 20px;
 }
 
 .form_res_inf {
-  margin: 25px 0 25px 81px;
+  /* margin: 25px 0 25px 81px; */
+  margin: 25px 0 25px 0px;
 }
 .form_res_inf div {
   margin: 10px 0;
@@ -114,7 +128,8 @@ div span label {
   margin-top: 40px;
 }
 .type-experience select {
-  font-size: larger;
+  /* font-size: larger; */
+  font-size: inherit;
   border-radius: 10px;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
     Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -143,6 +158,15 @@ div span label {
   background-color: #e74c3c;
   padding: 15px;
   color: white;
+}
+.select_message{
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  border-radius:0.5 ;
+  margin: 2rem 0;
+  height: 3rem;
+  padding-top: 25px;
 }
 
 @media screen and (max-width: 1560px) and (min-width: 1408px) {
@@ -217,6 +241,9 @@ div span label {
   .res_inf_email {
     margin: 0;
   }
+  .background {
+    width: 100%;
+  }
 }
 @media screen and (max-width: 1268px) {
   .res_inf {
@@ -249,9 +276,10 @@ div span label {
   .res_inf_email {
     margin: 0;
   }
-  .main {
+  /* .main {
     background-image: linear-gradient(to bottom, #acdee5, rgba(255, 0, 0, 0));
-  }
+  } */
+  
 }
 @media screen and (max-width: 865px) {
   .form_register {
@@ -260,8 +288,9 @@ div span label {
   .left_block {
     margin-bottom: 15px;
   }
-  .img_bottom img {
-    /* visibility: hidden; */
+  .type-experience select{
+    font-size: smaller;
+
   }
 }
 
@@ -280,4 +309,5 @@ div span label {
     display: grid;
     margin: 0;
   }
+  
 }

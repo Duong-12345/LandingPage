@@ -133,7 +133,8 @@ const Main = () => {
   };
   const [initSelect, setInitSelect] = useState(() => {
     return {
-      value: "tour_offline",
+      // value: "tour_offline",
+      value: "",
     };
   });
   const [on, setOn] = useState({
@@ -215,7 +216,9 @@ const Main = () => {
         !value.province ||
         !value.school ||
         !value.arrayProgram.length ||
-        !value.day)
+        !value.day
+        // !initSelect.value
+        )
     ) {
       return (
         <div className="false-message">
@@ -274,276 +277,288 @@ const Main = () => {
   );
   console.log(value.province);
   return (
-    <div className="main">
-      <Helmet>
-        <title>PHENIKAA CAMPUS VISIT</title>
-      </Helmet>
-      <div className="body">
-        <div className="img_head">
-          <span className="img_head_left">
-            <img
-              src="./img/logo1.png"
-              alt="logo1"
-              width="100%"
-              height="auto"
-            ></img>
-          </span>
-          <span className="img_head_right">
-            <img
-              src="./img/logo2.png"
-              alt="logo2"
-              width="100%"
-              height="auto"
-            ></img>
-          </span>
-        </div>
-        {messageSuccess()}
-        <div className="title">
-          <p className="title_text">ĐĂNG KÝ TRẢI NGHIỆM</p>
-          <p className="title_text">PHENIKAA CAMPUS VISIT 2022</p>
-        </div>
-        <p>
-          Trường Đại học Phenikaa gửi lời chào trân trọng tới Quý vị phụ huynh
-          và các em học sinh!
-        </p>
-        <p>
-          Với mục tiêu giới thiệu, cung cấp thông tin tới Quý vị phụ huynh và
-          các em học sinh về Trường Đại học Phenikaa, các ngành nghề đang được
-          đào tạo tại Trường, giúp các em có quyết định lựa chọn ngành nghề đúng
-          đắn, Trường Đại học Phenikaa tổ chức chương trình trải nghiệm
-          "Phenikaa Campus Visit 2022".
-        </p>
-        <p>
-          Chương trình được hỗ trợ <b>HOÀN TOÀN MIỄN PHÍ.</b>
-        </p>
-        <p>Lịch đăng ký thời gian tham quan (dự kiến):</p>
-        <div className="form_register">
-          <div className="left_block">
-            <div className="top_child_left">Offline:</div>
-            <div className="bottom_child_left">
-              <ul>
-                <li>
-                  <p>09:00 buổi sáng/ 15:00 buổi chiều</p>
-                </li>
-                <li>
-                  <p>
-                    Phòng Tuyển sinh & truyền thông,<br></br> 103 nhà A2, Trường
-                    Đại học Phenikaa.
-                  </p>
-                </li>
-              </ul>
-            </div>
+    <div className="background">
+
+      <div className="main">
+        <span className="img_bottom">
+          <img src="./img/smt.png" alt="logo1" width="100%" height="auto" style={{ position: 'absolute', left: 0, bottom: 0, zIndex :-1  }}></img>
+        </span>
+        <span className="img_bottom">
+          <img src="./img/imgTop.png" alt="logo1" width="100%" height="auto" style={{ position: 'absolute', left: 0, top: 0, zIndex :-1 }}></img>
+        </span>
+        <Helmet>
+          <title>PHENIKAA CAMPUS VISIT</title>
+        </Helmet>
+        <div className="body">
+          <div className="img_head">
+            <span className="img_head_left">
+              <img
+                src="./img/logo1.png"
+                alt="logo1"
+                width="100%"
+                height="auto"
+              ></img>
+            </span>
+            <span className="img_head_right">
+              <img
+                src="./img/logo2.png"
+                alt="logo2"
+                width="100%"
+                height="auto"
+              ></img>
+            </span>
           </div>
-          <div className="right_block">
-            <div className="top_child_left">Online:</div>
-            <div className="bottom_child_left">
-              <ul>
-                <li>
-                  <p>09:00 - 10:00 sáng Chủ Nhật hàng tuần.</p>
-                </li>
-              </ul>
-            </div>
+          {messageSuccess()}
+          <div className="title">
+            <p className="title_text">ĐĂNG KÝ TRẢI NGHIỆM</p>
+            <p className="title_text">PHENIKAA CAMPUS VISIT 2022</p>
           </div>
-        </div>
-        <p>
-          Hãy liên hệ với chúng tôi khi cần hỗ trợ thêm thông tin<br></br>
-          <b>Phòng Tuyển sinh và Truyền thông</b>
-        </p>
-        <p>0946.906.552 (Ms Hằng)</p>
-        <p>truyenthong@phenikaa-uni.edu.vn</p>
-        <p className="title_text_child">THÔNG TIN ĐĂNG KÝ</p>
-        <form onSubmit={handleSubmit}>
-          <div className="form_res_inf">
-            {/* <div className="form_res_name">
-              <div className="form_res_name_input">
-                <label>Họ và tên:</label>
-                <input
-                  type="text"
-                  placeholder="Nguyễn Văn A"
-                  name="name"
-                  value={value.name}
-                  onChange={handleName}
-                  required
-                ></input>
-                {submitted && !value.name && (
-                  <p id="note_message">Please enter a name</p>
-                )}
+          <p>
+            Trường Đại học Phenikaa gửi lời chào trân trọng tới Quý vị phụ huynh
+            và các em học sinh!
+          </p>
+          <p>
+            Với mục tiêu giới thiệu, cung cấp thông tin tới Quý vị phụ huynh và
+            các em học sinh về Trường Đại học Phenikaa, các ngành nghề đang được
+            đào tạo tại Trường, giúp các em có quyết định lựa chọn ngành nghề đúng
+            đắn, Trường Đại học Phenikaa tổ chức chương trình trải nghiệm
+            "Phenikaa Campus Visit 2022".
+          </p>
+          <p>
+            Chương trình được hỗ trợ <b>HOÀN TOÀN MIỄN PHÍ.</b>
+          </p>
+          <p>Lịch đăng ký thời gian tham quan (dự kiến):</p>
+          <div className="form_register">
+            <div className="left_block">
+              <div className="top_child_left">Offline:</div>
+              <div className="bottom_child_left">
+                <ul>
+                  <li>
+                    <p>09:00 buổi sáng/ 15:00 buổi chiều</p>
+                  </li>
+                  <li>
+                    <p>
+                      Phòng Tuyển sinh & truyền thông,<br></br> 103 nhà A2, Trường
+                      Đại học Phenikaa.
+                    </p>
+                  </li>
+                </ul>
               </div>
-              <p>(Nếu nhóm 2 người trở lên chỉ để tên một đại diện)</p>
-            </div> */}
-            <div className="res_inf">
-              <span>
-                <label>Họ và tên:</label>
-                <input
-                  type="text"
-                  placeholder="(Nếu nhóm 2 người trở lên chỉ để tên một đại diện)"
-                  name="name"
-                  value={value.name}
-                  onChange={handleName}
-                  required
-                ></input>
-                {submitted && !value.name && (
-                  <p id="note_message">Please enter a name</p>
-                )}
-              </span>
-              <span>
-                <label>Số điện thoại liên hệ:</label>
-                <input
-                  type="text"
-                  placeholder="phone number"
-                  name="phone"
-                  value={value.phone}
-                  onChange={handlePhone}
-                  required
-                ></input>
-                {submitted && !value.phone && (
-                  <p id="note_message">Please enter a phone number</p>
-                )}
-              </span>
             </div>
-            <div className="res_inf">
-              <span>
-                <label className="res_inf_email">Email:</label>
-                <input
-                  type="email"
-                  placeholder="abc@gmail.com"
-                  name="email"
-                  value={value.email}
-                  onChange={handleEmail}
-                  required
-                ></input>
-                {submitted && !value.email && (
-                  <p id="note_message">Please enter a email</p>
-                )}
-              </span>
-              <span name={value.provinceCode}>
-                <label>Tỉnh:</label>
-                <>
-                  {
-                    <datalist id="province">
-                      {dataProvince?.map((e) => (
-                        <option
-                          value={e.name + " - " + e.code}
-                          name={e.code}
-                        ></option>
-                      ))}
-                    </datalist>
-                  }
-                </>
-                <input
-                  className="res_inf_input"
-                  type="text"
-                  list="province"
-                  placeholder="province"
-                  // name={}
-                  value={value.province}
-                  onChange={(val) => handleProvince(val)}
-                  required
-                ></input>
-                {/* <Select
-                value={{
-                  value: value.province,
-                  label: value.province,
-                }}
-                options={dataProvince?.map(e=>({
-                  label: e,
-                  value: e
-                }))}
-                /> */}
-
-                {submitted && !value.province && (
-                  <p id="note_message">Please enter a province</p>
-                )}
-              </span>
-            </div>
-            <div className="res_inf">
-              <span>
-                <label className="res_inf_district">Quận/Huyện:</label>
-                <>
-                  {
-                    <datalist id="district">
-                      {filterDistrict?.map((e) => (
-                        <option value={e.name + " - " + e.code}></option>
-                      ))}
-                    </datalist>
-                  }
-                </>
-                <input
-                  className="res_inf_input"
-                  type="text"
-                  list="district"
-                  placeholder="district"
-                  name="district"
-                  value={value.district}
-                  onChange={(val) => handleDistrict(val)}
-                  required
-                ></input>
-
-                {submitted && !value.district && (
-                  <p id="note_message">Please enter a province</p>
-                )}
-              </span>
-              <span>
-                <label>Trường:</label>
-                <>
-                  {
-                    <datalist id="school">
-                      {filterSchool?.map((e) => (
-                        <option value={e.name + " - " + e.code}></option>
-                      ))}
-                    </datalist>
-                  }
-                </>
-                <input
-                  type="text"
-                  list="school"
-                  placeholder="high school"
-                  name="school"
-                  value={value.school}
-                  onChange={handleSchool}
-                  required
-                ></input>
-                {submitted && !value.school && (
-                  <p id="note_message">Please enter a high school</p>
-                )}
-              </span>
+            <div className="right_block">
+              <div className="top_child_left">Online:</div>
+              <div className="bottom_child_left">
+                <ul>
+                  <li>
+                    <p>09:00 - 10:00 sáng Chủ Nhật hàng tuần.</p>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-          <div className="type-experience">
-            <p className="title_text_child">HÌNH THỨC TRẢI NGHIỆM</p>
-            <select onChange={change} value={initSelect.value}>
-              <option value="tour_ofline">
-                In person Campus Tour-1h(Campus Tour Offline + Tour guide)
-              </option>
-              <option value="tour_online">
-                Virtual Campus Tour 30'(Tour Online + Tour guide)
-              </option>
-            </select>
-          </div>
-          {
-            <Offline
-              handleDay={handleDay}
-              handleAmount={handleAmount}
-              amount={value.amount}
-              day={value.day}
-              submitted={submitted}
-              handleProgram={handleProgram}
-              handleDepartment={handleDepartment}
-              program={value.program}
-              department={value.department}
-              change={change}
-              arrayProgram={value.arrayProgram}
-              arrayDepartment={value.arrayDepartment}
-              status={on.status}
-              time={value.time}
-            />
-          }
-          <input type="submit" name="" value="Gửi" className="send" />
-        </form>
+          <p>
+            Hãy liên hệ với chúng tôi khi cần hỗ trợ thêm thông tin<br></br>
+            <b>Phòng Tuyển sinh và Truyền thông</b>
+          </p>
+          <p>0946.906.552 (Ms Hằng)</p>
+          <p>truyenthong@phenikaa-uni.edu.vn</p>
+          <p className="title_text_child">THÔNG TIN ĐĂNG KÝ</p>
+          <form onSubmit={handleSubmit}>
+            <div className="form_res_inf">
+              {/* <div className="form_res_name">
+                <div className="form_res_name_input">
+                  <label>Họ và tên:</label>
+                  <input
+                    type="text"
+                    placeholder="Nguyễn Văn A"
+                    name="name"
+                    value={value.name}
+                    onChange={handleName}
+                    required
+                  ></input>
+                  {submitted && !value.name && (
+                    <p id="note_message">Please enter a name</p>
+                  )}
+                </div>
+                <p>(Nếu nhóm 2 người trở lên chỉ để tên một đại diện)</p>
+              </div> */}
+              <div className="res_inf">
+                <span>
+                  <label>Họ và tên:</label>
+                  <input
+                    type="text"
+                    placeholder="Nếu nhóm 2 người trở lên chỉ để tên một người đại diện"
+                    name="name"
+                    value={value.name}
+                    onChange={handleName}
+                    required
+                  ></input>
+                  {submitted && !value.name && (
+                    <p id="note_message">Please enter a name</p>
+                  )}
+                </span>
+                <span>
+                  <label>Số điện thoại liên hệ:</label>
+                  <input
+                    type="text"
+                    placeholder="Nhập số điện thoại liên hệ"
+                    name="phone"
+                    value={value.phone}
+                    onChange={handlePhone}
+                    required
+                  ></input>
+                  {submitted && !value.phone && (
+                    <p id="note_message">Please enter a phone number</p>
+                  )}
+                </span>
+              </div>
+              <div className="res_inf">
+                <span>
+                  <label className="res_inf_email">Email:</label>
+                  <input
+                    type="email"
+                    placeholder="ví dụ: abc@gmail.com"
+                    name="email"
+                    value={value.email}
+                    onChange={handleEmail}
+                    required
+                  ></input>
+                  {submitted && !value.email && (
+                    <p id="note_message">Please enter a email</p>
+                  )}
+                </span>
+                <span name={value.provinceCode}>
+                  <label>Tỉnh:</label>
+                  <>
+                    {
+                      <datalist id="province">
+                        {dataProvince?.map((e) => (
+                          <option
+                            value={e.name + " - " + e.code}
+                            name={e.code}
+                          ></option>
+                        ))}
+                      </datalist>
+                    }
+                  </>
+                  <input
+                    className="res_inf_input"
+                    type="text"
+                    list="province"
+                    placeholder="Chọn tên Tỉnh"
+                    // name={}
+                    value={value.province}
+                    onChange={(val) => handleProvince(val)}
+                    required
+                  ></input>
+                  {/* <Select
+                  value={{
+                    value: value.province,
+                    label: value.province,
+                  }}
+                  options={dataProvince?.map(e=>({
+                    label: e,
+                    value: e
+                  }))}
+                  /> */}
+
+                  {submitted && !value.province && (
+                    <p id="note_message">Please enter a province</p>
+                  )}
+                </span>
+              </div>
+              <div className="res_inf">
+                <span>
+                  <label className="res_inf_district">Quận/Huyện:</label>
+                  <>
+                    {
+                      <datalist id="district">
+                        {filterDistrict?.map((e) => (
+                          <option value={e.name + " - " + e.code}></option>
+                        ))}
+                      </datalist>
+                    }
+                  </>
+                  <input
+                    className="res_inf_input"
+                    type="text"
+                    list="district"
+                    placeholder="Chọn tên Quận/Huyện"
+                    name="district"
+                    value={value.district}
+                    onChange={(val) => handleDistrict(val)}
+                    required
+                  ></input>
+
+                  {submitted && !value.district && (
+                    <p id="note_message">Please enter a province</p>
+                  )}
+                </span>
+                <span>
+                  <label>Trường:</label>
+                  <>
+                    {
+                      <datalist id="school">
+                        {filterSchool?.map((e) => (
+                          <option value={e.name + " - " + e.code}></option>
+                        ))}
+                      </datalist>
+                    }
+                  </>
+                  <input
+                    type="text"
+                    list="school"
+                    placeholder="Chọn tên Trường"
+                    name="school"
+                    value={value.school}
+                    onChange={handleSchool}
+                    required
+                  ></input>
+                  {submitted && !value.school && (
+                    <p id="note_message">Please enter a high school</p>
+                  )}
+                </span>
+              </div>
+            </div>
+            <div className="type-experience">
+              <p className="title_text_child">HÌNH THỨC TRẢI NGHIỆM</p>
+              <select onChange={change} value={initSelect.value}>
+                {/* <option disabled >Bạn chọn hình thức trải nghiệm nào ?</option> */}
+                <option value="tour_ofline">
+                  In person Campus Tour-1h(Campus Tour Offline + Tour guide)
+                </option>
+                <option value="tour_online">
+                  Virtual Campus Tour 30'(Tour Online + Tour guide)
+                </option>
+              </select>
+            </div>
+            {/* {submitted && !initSelect.value && (
+                    <p id="note_message">Please choose the form you want to experience
+                    </p>
+                  )} */}
+            {
+              // !initSelect.value ? <div className="select_message">Bạn hãy chọn hình thức trải nghiệm</div> :  
+              <Offline
+                handleDay={handleDay}
+                handleAmount={handleAmount}
+                amount={value.amount}
+                day={value.day}
+                submitted={submitted}
+                handleProgram={handleProgram}
+                handleDepartment={handleDepartment}
+                program={value.program}
+                department={value.department}
+                change={change}
+                arrayProgram={value.arrayProgram}
+                arrayDepartment={value.arrayDepartment}
+                status={on.status}
+                time={value.time}
+              />
+            }
+            <input type="submit" name="" value="Gửi" className="send"/>
+          </form>
+        </div>
       </div>
-      <span className="img_bottom">
-        <img src="./img/smt.png" alt="logo1" width="100%" height="auto"></img>
-      </span>
     </div>
   );
 };

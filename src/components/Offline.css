@@ -14,12 +14,13 @@
   border-radius: 10px;
   width: 105px;
   height: 50px;
-  font-size: xx-large;
+  font-size: 28px;
   font-weight: 700;
   margin-top: 30px;
 }
 .form_off div input {
-  width: 1027px;
+  /* width: 1027px; */
+  width: 647px;
 }
 
 .time_off {
@@ -254,5 +255,11 @@
   }
   #tittle_off{
     font-size: initial;
+  }
+  .send{
+    width: 90px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 500;
   }
 }

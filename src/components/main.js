@@ -278,14 +278,13 @@ const Main = () => {
   console.log(value.province);
   return (
     <div className="background">
-
-      <div className="main">
-        <span className="img_bottom">
+<span className="img_bottom">
           <img src="./img/smt.png" alt="logo1" width="100%" height="auto" style={{ position: 'absolute', left: 0, bottom: 0, zIndex :-1  }}></img>
         </span>
         <span className="img_bottom">
           <img src="./img/imgTop.png" alt="logo1" width="100%" height="auto" style={{ position: 'absolute', left: 0, top: 0, zIndex :-1 }}></img>
         </span>
+      <div className="main">
         <Helmet>
           <title>PHENIKAA CAMPUS VISIT</title>
         </Helmet>

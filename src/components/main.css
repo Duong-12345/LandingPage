@@ -2,8 +2,8 @@
   /* background-image: url("../assets/images/background.png"); */
   background-image: linear-gradient(to bottom, #acdee5, rgba(255, 0, 0, 0));
   background-size: cover;
-  width: 70%;
-  margin: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .main {
@@ -19,7 +19,8 @@
   background-size: cover;
   background-repeat: no-repeat;
   padding-bottom: 50vw;
-  z-index: 1;
+  width: 70%;
+  margin: auto;
 }
 .body {
   width: 80%;
@@ -190,6 +191,9 @@ div span label {
   /* .res_inf_email{
     margin:0
   } */
+  /* .main {
+    width: 100%;
+  } */
 }
 @media screen and (max-width: 1408px) and (min-width: 1328px) {
   div span label {
@@ -210,6 +214,9 @@ div span label {
   }
   .res_inf_email {
     margin: 0;
+  }
+  .main {
+    width: 100%;
   }
 }
 @media screen and (max-width: 1328px) {
@@ -241,7 +248,7 @@ div span label {
   .res_inf_email {
     margin: 0;
   }
-  .background {
+  .main {
     width: 100%;
   }
 }

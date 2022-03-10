@@ -46,16 +46,19 @@ export default function Offline(props) {
   const showTitle = () => {
     if (props.status === false) {
       return (
+        <>
         <p id="tittle_off">
           <b>In person Campus Tour-1h</b>
           <br></br>
           (Campus Tour Offline + Tour guide)
         </p>
+        {/* <p>Bạn chỉ được đăng ký lịch trước 1 tuần</p> */}
+        </>
       );
     } else
       return (
         <p id="tittle_off">
-          <b>Virtual Campus Tour 30'</b>
+          <b>Virtual Campus Tour-30p</b>
           <br></br>
           (Tour Offline + Tour guide)
         </p>
@@ -64,9 +67,9 @@ export default function Offline(props) {
 
   const pickDay = (date) => {
     if (date?.getDay() === 0 || date?.getDay() === 2) {
-      return "8:00 - 10:30";
+      return "9:00 - 10:00";
     } else if (date?.getDay() === 4) {
-      return "13:30 - 16:00";
+      return "9:00 - 15:00";
     } else return null;
   };
 
@@ -119,6 +122,8 @@ export default function Offline(props) {
   return (
     <div className="body_off">
       {showTitle()}
+      <p id = 'note_message1'>Bạn chỉ được đăng ký lịch trước 1 tuần</p>
+
       <div className="form_off">
         <div className="form_off_input">
           <div className="form_div">

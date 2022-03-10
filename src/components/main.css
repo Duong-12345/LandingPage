@@ -75,7 +75,7 @@
 }
 .phone_icon {
   width: 27px;
-  height: fit-content;
+  height: 27px;
 }
 .bound_img_p {
   display: flex;
@@ -203,7 +203,7 @@ div span label {
   margin: 0;
 }
 #note_message1 {
-  color: #1087ff;
+  color: #203370;
   margin: 0;
 }
 .success-message {

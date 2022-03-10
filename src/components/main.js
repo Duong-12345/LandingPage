@@ -243,7 +243,7 @@ const Main = () => {
           </div>
         </div>
       ): null}
-      <div className="success-message">Bạn đã gửi thành công</div>
+      <div className="success-message">Bạn đã đăng ký thành công</div>
       </>
     }
     // <div className="success-message">Bạn đã gửi thành công</div>
@@ -597,12 +597,12 @@ const Main = () => {
                   In person Campus Tour-1h(Campus Tour Offline + Tour guide)
                 </option>
                 <option value="tour_online">
-                  Virtual Campus Tour 30'(Tour Online + Tour guide)
+                  Virtual Campus Tour-30p(Tour Online + Tour guide)
                 </option>
               </select>
             </div>
             <p id="note_message1">
-              Bạn có thể chọn hình thức trải nghiệm online bằng cách chọn ở ô bên cạnh
+              Bạn có thể chọn hình thức trải nghiệm online bằng cách chọn ở ô kế tiếp
             </p>
             {/* {submitted && !initSelect.value && (
                     <p id="note_message">Please choose the form you want to experience

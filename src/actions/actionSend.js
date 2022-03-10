@@ -1,7 +1,7 @@
 const postData = async (data) => {
   const URL = "http://10.20.2.201:5000/registration";
   // const URL = "https://615ab6234a360f0017a81212.mockapi.io/api/demo/Form";
-  console.log(JSON.stringify(data));
+  // console.log(JSON.stringify(data));
   return fetch(URL, {
     method: "POST",
     headers: {

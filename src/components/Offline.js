@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 
 export default function Offline(props) {
   const [selectedDate, setSelectedDate] = useState(props.day);
+  
   const showAmount = () => {
     if (props.status === false) {
       return (
@@ -83,17 +84,29 @@ export default function Offline(props) {
   let second = first + 1;
   let third = first + 3;
   let last = first + 6;
-// console.log(props.arrayProgram)
+
   const countSelect = (e) => {
-    if (props.amount === "" && props.arrayProgram.length >= 3) {
+    let isAdd = e.target.checked;
+    if (props.amount === "" && props.status === false) {
+      alert("Bạn cần chọn số lượng người tham gia trước khi tích chọn");
       e.target.checked = false;
-      // alert("Mỗi người chỉ được chọn 3 ngành muốn trải nghiệm");
-    } else if (props.amount !== "" && props.arrayProgram.length >= 3 * props.amount) {
+    } else if (
+      props.amount !== "" &&
+      props.arrayProgram.length >= 3 * props.amount
+    ) {
       e.target.checked = false;
-      // alert("Bạn được chọn 3 ngành/người tham gia trải nghiệm");
+      if (isAdd)
+        window.alert("Bạn chỉ được chọn 3 ngành/ 1 người tham gia trải nghiệm");
+    } else if (
+      props.amount === "" &&
+      props.status === true &&
+      props.arrayProgram.length >= 3
+    ) {
+      e.target.checked = false;
+      if (isAdd) window.alert("Bạn chỉ được chọn 3 ngành tham gia trải nghiệm");
     }
   };
-
+ 
   const dataDepartment = useSelector(
     (state) => state.departmentReducer.dataDepartment.data
   );
@@ -103,7 +116,6 @@ export default function Offline(props) {
 
   const dataDepartmentRight = dataDepartment?.slice(0, 7).reverse();
   const dataDepartmentLeft = dataDepartment?.slice(7, 13).reverse();
-  // console.log(props)
   return (
     <div className="body_off">
       {showTitle()}
@@ -160,7 +172,6 @@ export default function Offline(props) {
           onInput={props.handleDepartment}
         >
           <div className="container_left">
-           
             {dataDepartmentLeft?.map((dep) => {
               let tmpProgram = dataProgram?.filter(
                 (pro) => pro.departmentCode === dep.code
@@ -174,8 +185,17 @@ export default function Offline(props) {
                     return (
                       <label className="container">
                         <p>{tmpPro.name}</p>
-                        <input type="checkbox" value={tmpPro.code} onClick={countSelect} name={dep.code}></input>
-                      <span className="checkmark"></span>
+                        <input
+                          type="checkbox"
+                          value={tmpPro.code}
+                          onClick={countSelect}
+                          name={dep.code}
+                          className="checkbox"
+                          checked={
+                            props.arrayProgram.indexOf(tmpPro.code) !== -1
+                          }
+                        ></input>
+                        <span className="checkmark"></span>
                       </label>
                     );
                   })}
@@ -184,7 +204,6 @@ export default function Offline(props) {
             })}
           </div>
           <div className="container_right">
-           
             {dataDepartmentRight?.map((dep) => {
               let tmpProgram = dataProgram?.filter(
                 (pro) => pro.departmentCode === dep.code
@@ -198,8 +217,17 @@ export default function Offline(props) {
                     return (
                       <label className="container">
                         <p>{tmpPro.name}</p>
-                        <input type="checkbox" value={tmpPro.code} onClick={countSelect} name={dep.code}></input>
-                      <span className="checkmark"></span>
+                        <input
+                          type="checkbox"
+                          value={tmpPro.code}
+                          onClick={countSelect}
+                          name={dep.code}
+                          checked={
+                            props.arrayProgram.indexOf(tmpPro.code) !== -1
+                          }
+                          className="checkbox"
+                        ></input>
+                        <span className="checkmark"></span>
                       </label>
                     );
                   })}

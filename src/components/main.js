@@ -82,12 +82,12 @@ const Main = () => {
       time,
     });
   };
-
   const handleAmount = (e) => {
     e.persist();
     setValue((value) => ({
       ...value,
       amount: e.target.value,
+      arrayProgram: []
     }));
   };
 
@@ -110,7 +110,6 @@ const Main = () => {
   }, []);
   const arrayDepartmentFix = [...new Set(value.arrayDepartment)];
   const date = moment(value.day).format("YYYY-MM-DDThh:mm:ssZ");
-  console.log(date);
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
@@ -133,8 +132,8 @@ const Main = () => {
   };
   const [initSelect, setInitSelect] = useState(() => {
     return {
-      // value: "tour_offline",
-      value: "",
+      value: "tour_offline",
+      // value: "",
     };
   });
   const [on, setOn] = useState({
@@ -149,11 +148,12 @@ const Main = () => {
     }));
     return on;
   };
-  console.log(value.arrayProgram);
   const handleProgram = (e) => {
-    console.log(e);
+    console.log(e.target.checked);
+   
     e.persist();
     if (!e.target.checked) {
+      console.log('0')
       let tmp = value.arrayProgram;
       let index = tmp.indexOf(e.target.value);
       if (index !== -1) {
@@ -175,12 +175,11 @@ const Main = () => {
           checked: e.target.checked,
         },
         arrayProgram: [...value.arrayProgram, e.target.value],
-      });
+      })
     }
+    
   };
   const handleDepartment = (e) => {
-    console.log(e);
-
     e.persist();
     if (!e.target.checked) {
       let tmp = value.arrayDepartment;
@@ -207,7 +206,7 @@ const Main = () => {
       });
     }
   };
-  const messageSuccess = () => {
+  const messageSuccess = (a) => {
     if (
       submitted &&
       (!value.name ||
@@ -216,9 +215,8 @@ const Main = () => {
         !value.province ||
         !value.school ||
         !value.arrayProgram.length ||
-        !value.day
-        // !initSelect.value
-        )
+        !value.day)
+      // !initSelect.value
     ) {
       return (
         <div className="false-message">
@@ -227,9 +225,29 @@ const Main = () => {
       );
     } else if (!submitted) {
       return null;
-    } else return <div className="success-message">Bạn đã gửi thành công</div>;
+    } else 
+    {
+      return  <>
+      { modal===false ? (
+        <div className="modal">
+          <div onClick={toggleModal} className="overlay"></div>
+          <div className="modal-content">
+            <h2>Phenikaa xin chào</h2>
+            <p>
+              Bạn đã gửi thông tin thành công. Nhà trường rất mong chờ bạn sẽ đến tham quan trường vào 
+              thời gian bạn đã đăng kí
+            </p>
+            <button  className="close-modal" onClick={toggleModal}>
+              &times;
+            </button>
+          </div>
+        </div>
+      ): null}
+      <div className="success-message">Bạn đã gửi thành công</div>
+      </>
+    }
+    // <div className="success-message">Bạn đã gửi thành công</div>
   };
-
   var inputText = value.province;
   const processText = (inputText) => {
     var output = [];
@@ -275,15 +293,49 @@ const Main = () => {
       sch.districtCode == processText1(inputText1) &&
       sch.provinceCode == processText(inputText)
   );
-  console.log(value.province);
+
+  const [modal, setModal] = useState(false);
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
   return (
     <div className="background">
-<span className="img_bottom">
-          <img src="./img/smt.png" alt="logo1" width="100%" height="auto" style={{ position: 'absolute', left: 0, bottom: 0, zIndex :-1  }}></img>
-        </span>
-        <span className="img_bottom">
-          <img src="./img/imgTop.png" alt="logo1" width="100%" height="auto" style={{ position: 'absolute', left: 0, top: 0, zIndex :-1 }}></img>
-        </span>
+      
+      {/* { modal && (
+        <div className="modal">
+          <div onClick={toggleModal} className="overlay"></div>
+          <div className="modal-content">
+            <h2>Phenikaa xin chào</h2>
+            <p>
+              Bạn đã gửi thông tin thành công. Nhà trường rất mong chờ bạn sẽ đến tham quan trường vào 
+              thời gian bạn đã đăng kí
+            </p>
+            <button  className="close-modal" onClick={toggleModal}>
+              &times;
+            </button>
+          </div>
+        </div>
+      )} */}
+      <span className="img_bottom">
+        <img
+          src="./img/smt.png"
+          alt="logo1"
+          width="100%"
+          height="auto"
+          style={{ position: "absolute", left: 0, bottom: 0, zIndex: -1 }}
+        ></img>
+      </span>
+      <span className="img_bottom">
+        <img
+          src="./img/imgTop.png"
+          alt="logo1"
+          width="100%"
+          height="auto"
+          style={{ position: "absolute", left: 0, top: 0, zIndex: -1 }}
+        ></img>
+      </span>
       <div className="main">
         <Helmet>
           <title>PHENIKAA CAMPUS VISIT</title>
@@ -319,8 +371,8 @@ const Main = () => {
           <p>
             Với mục tiêu giới thiệu, cung cấp thông tin tới Quý vị phụ huynh và
             các em học sinh về Trường Đại học Phenikaa, các ngành nghề đang được
-            đào tạo tại Trường, giúp các em có quyết định lựa chọn ngành nghề đúng
-            đắn, Trường Đại học Phenikaa tổ chức chương trình trải nghiệm
+            đào tạo tại Trường, giúp các em có quyết định lựa chọn ngành nghề
+            đúng đắn, Trường Đại học Phenikaa tổ chức chương trình trải nghiệm
             "Phenikaa Campus Visit 2022".
           </p>
           <p>
@@ -331,27 +383,38 @@ const Main = () => {
             <div className="left_block">
               <div className="top_child_left">Offline:</div>
               <div className="bottom_child_left">
-                <ul>
-                  <li>
-                    <p>09:00 buổi sáng/ 15:00 buổi chiều</p>
-                  </li>
-                  <li>
-                    <p>
-                      Phòng Tuyển sinh & truyền thông,<br></br> 103 nhà A2, Trường
-                      Đại học Phenikaa.
-                    </p>
-                  </li>
-                </ul>
+                <span className="bound_img_p">
+                  <img
+                    src="./img/clock.png"
+                    alt="logo1"
+                    className="phone_icon"
+                  ></img>
+                  <p>09:00 buổi sáng/ 15:00 buổi chiều</p>
+                </span>
+                <span className="bound_img_p">
+                  <img
+                    src="./img/address.png"
+                    alt="logo1"
+                    className="phone_icon"
+                  ></img>
+                  <p>
+                    Phòng Tuyển sinh & truyền thông,<br></br> 103 nhà A2, Trường
+                    Đại học Phenikaa.
+                  </p>
+                </span>
               </div>
             </div>
             <div className="right_block">
               <div className="top_child_left">Online:</div>
               <div className="bottom_child_left">
-                <ul>
-                  <li>
-                    <p>09:00 - 10:00 sáng Chủ Nhật hàng tuần.</p>
-                  </li>
-                </ul>
+                <span className="bound_img_p">
+                  <img
+                    src="./img/clock.png"
+                    alt="logo1"
+                    className="phone_icon"
+                  ></img>
+                  <p>09:00 - 10:00 sáng Chủ Nhật hàng tuần.</p>
+                </span>
               </div>
             </div>
           </div>
@@ -359,8 +422,15 @@ const Main = () => {
             Hãy liên hệ với chúng tôi khi cần hỗ trợ thêm thông tin<br></br>
             <b>Phòng Tuyển sinh và Truyền thông</b>
           </p>
-          <p>0946.906.552 (Ms Hằng)</p>
-          <p>truyenthong@phenikaa-uni.edu.vn</p>
+          <span className="bound_img_p">
+            <img src="./img/phone.png" alt="logo1" className="phone_icon"></img>
+            <p>0946.906.552 (Ms Hằng)</p>
+          </span>
+          <span className="bound_img_p">
+            <img src="./img/email.png" alt="logo1" className="phone_icon"></img>
+            <p>truyenthong@phenikaa-uni.edu.vn</p>
+          </span>
+
           <p className="title_text_child">THÔNG TIN ĐĂNG KÝ</p>
           <form onSubmit={handleSubmit}>
             <div className="form_res_inf">
@@ -531,12 +601,15 @@ const Main = () => {
                 </option>
               </select>
             </div>
+            <p id="note_message1">
+              Bạn có thể chọn hình thức trải nghiệm online bằng cách chọn ở ô bên cạnh
+            </p>
             {/* {submitted && !initSelect.value && (
                     <p id="note_message">Please choose the form you want to experience
                     </p>
                   )} */}
             {
-              // !initSelect.value ? <div className="select_message">Bạn hãy chọn hình thức trải nghiệm</div> :  
+              // !initSelect.value ? <div className="select_message">Bạn hãy chọn hình thức trải nghiệm</div> :
               <Offline
                 handleDay={handleDay}
                 handleAmount={handleAmount}
@@ -554,7 +627,7 @@ const Main = () => {
                 time={value.time}
               />
             }
-            <input type="submit" name="" value="Gửi" className="send"/>
+            <input type="submit" name="" value="Gửi" className="send" />
           </form>
         </div>
       </div>

@@ -123,27 +123,27 @@
   height: auto;
   border-radius: 10px;
 }
-#note_message_child{
+#note_message_child {
   color: red;
   margin: 0;
   text-align: center;
 }
-.react-datepicker-wrapper{
+.react-datepicker-wrapper {
   max-width: max-content;
-  margin:0
-}
-.react-datepicker__triangle{
-  visibility: hidden;
-}
-.react-datepicker__input-container{
   margin: 0;
 }
-.react-datepicker-popper{
+.react-datepicker__triangle {
+  visibility: hidden;
+}
+.react-datepicker__input-container {
+  margin: 0;
+}
+.react-datepicker-popper {
   transform: translate(390px, 1423px);
   left: 20px;
-    top: -69px;
+  top: -69px;
 }
-.react-datepicker{
+.react-datepicker {
   margin: 0;
   margin-left: 20px;
 }
@@ -169,7 +169,7 @@
   .form_off div input {
     width: 100%;
   }
-  .react-datepicker-wrapper{
+  .react-datepicker-wrapper {
     max-width: 100%;
   }
 }
@@ -186,7 +186,7 @@
   .form_off div input {
     width: 100%;
   }
-  .react-datepicker-wrapper{
+  .react-datepicker-wrapper {
     max-width: 100%;
   }
 }
@@ -212,7 +212,7 @@
   .mount_off {
     margin-left: 0;
   }
-  .react-datepicker-wrapper{
+  .react-datepicker-wrapper {
     max-width: 100%;
   }
 }
@@ -250,13 +250,13 @@
   .mount_off {
     margin-left: 0;
   }
-  .react-datepicker-wrapper{
+  .react-datepicker-wrapper {
     max-width: 100%;
   }
-  #tittle_off{
+  #tittle_off {
     font-size: initial;
   }
-  .send{
+  .send {
     width: 90px;
     height: 40px;
     font-size: 20px;

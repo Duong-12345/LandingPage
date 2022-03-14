@@ -232,10 +232,9 @@ const Main = () => {
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
-            <h2>Phenikaa xin chào</h2>
+            <h2>Đăng ký thành công!</h2>
             <p>
-              Bạn đã gửi thông tin thành công. Nhà trường rất mong chờ bạn sẽ đến tham quan trường vào 
-              thời gian bạn đã đăng kí
+              Hẹn gặp lại các bạn tại Trường Đại học Phenikaa vào thời gian đã đăng ký!
             </p>
             <button  className="close-modal" onClick={toggleModal}>
               &times;
@@ -343,12 +342,12 @@ const Main = () => {
         <div className="body">
           <div className="img_head">
             <span className="img_head_left">
-              <img
+              {/* <img
                 src="./img/logo1.png"
                 alt="logo1"
                 width="100%"
                 height="auto"
-              ></img>
+              ></img> */}
             </span>
             <span className="img_head_right">
               <img
@@ -602,7 +601,7 @@ const Main = () => {
               </select>
             </div>
             <p id="note_message1">
-              Bạn có thể chọn hình thức trải nghiệm online bằng cách chọn ở ô kế tiếp
+              Bạn có thể chọn hình thức trải nghiệm online bằng cách chọn ở ô phía trên
             </p>
             {/* {submitted && !initSelect.value && (
                     <p id="note_message">Please choose the form you want to experience

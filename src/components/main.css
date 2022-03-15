@@ -128,7 +128,7 @@ p {
 }
 .bottom_child_left {
   width: 390px;
-  height: 114px;
+  height: 140px;
   background-color: white;
   border: 1px solid black;
   border-radius: 7px;
@@ -203,8 +203,9 @@ div span label {
   margin: 0;
 }
 #note_message1 {
-  color: #203370;
+  color: #f05e22;
   margin: 0;
+  font-weight: bold;
 }
 .success-message {
   font-family: "Roboto", sans-serif;
@@ -367,8 +368,11 @@ div span label {
     font-size: 18px;
   }
   .type-experience select {
-    font-size: 12px;
+    font-size: 15px;
     width: 100%;
+    background-color: white;
+    height: 40px;
+    color:black
   }
   .title_text {
     font-size: 20px;

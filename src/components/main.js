@@ -236,7 +236,7 @@ const Main = () => {
             <p>
               Hẹn gặp lại các bạn tại Trường Đại học Phenikaa vào thời gian đã đăng ký!
             </p>
-            <button  className="close-modal" onClick={toggleModal}>
+            <button className="close-modal" onClick={toggleModal}>
               &times;
             </button>
           </div>
@@ -369,13 +369,13 @@ const Main = () => {
           </p>
           <p>
             Với mục tiêu giới thiệu, cung cấp thông tin tới Quý vị phụ huynh và
-            các em học sinh về Trường Đại học Phenikaa, các ngành nghề đang được
+            các em học sinh về Trường Đại học Phenikaa, <br></br>các ngành nghề đang được
             đào tạo tại Trường, giúp các em có quyết định lựa chọn ngành nghề
-            đúng đắn, Trường Đại học Phenikaa tổ chức chương trình trải nghiệm
+            đúng đắn,<br></br> Trường Đại học Phenikaa tổ chức chương trình trải nghiệm
             "Phenikaa Campus Visit 2022".
           </p>
           <p>
-            Chương trình được hỗ trợ <b>HOÀN TOÀN MIỄN PHÍ.</b>
+            Chương trình được hỗ trợ <b style={{color: '#f05e22'}}>HOÀN TOÀN MIỄN PHÍ.</b>
           </p>
           <p>Lịch đăng ký thời gian tham quan (dự kiến):</p>
           <div className="form_register">
@@ -388,7 +388,7 @@ const Main = () => {
                     alt="logo1"
                     className="phone_icon"
                   ></img>
-                  <p>09:00 buổi sáng/ 15:00 buổi chiều</p>
+                  <p>09:00 buổi sáng/ 15:00 buổi chiều <br></br>Thứ Ba và Thứ Năm hàng tuần</p>
                 </span>
                 <span className="bound_img_p">
                   <img
@@ -413,6 +413,16 @@ const Main = () => {
                     className="phone_icon"
                   ></img>
                   <p>09:00 - 10:00 sáng Chủ Nhật hàng tuần.</p>
+                </span>
+                <span className="bound_img_p">
+                  <img
+                    src="./img/address.png"
+                    alt="logo1"
+                    className="phone_icon"
+                  ></img>
+                  <p>
+                    Online trên nền tảng Zoom
+                  </p>
                 </span>
               </div>
             </div>
@@ -600,7 +610,7 @@ const Main = () => {
                 </option>
               </select>
             </div>
-            <p id="note_message1">
+            <p id="note_message1" style={{textAlign:'left'}}>
               Bạn có thể chọn hình thức trải nghiệm online bằng cách chọn ở ô phía trên
             </p>
             {/* {submitted && !initSelect.value && (

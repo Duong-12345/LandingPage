@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 export default function Offline(props) {
   const [selectedDate, setSelectedDate] = useState(props.day);
-  
+
   const showAmount = () => {
     if (props.status === false) {
       return (
@@ -47,12 +47,12 @@ export default function Offline(props) {
     if (props.status === false) {
       return (
         <>
-        <p id="tittle_off">
-          <b>In person Campus Tour-1h</b>
-          <br></br>
-          (Campus Tour Offline + Tour guide)
-        </p>
-        {/* <p>Bạn chỉ được đăng ký lịch trước 1 tuần</p> */}
+          <p id="tittle_off">
+            <b>In person Campus Tour-1h</b>
+            <br></br>
+            (Campus Tour Offline + Tour guide)
+          </p>
+          {/* <p>Bạn chỉ được đăng ký lịch trước 1 tuần</p> */}
         </>
       );
     } else
@@ -66,10 +66,12 @@ export default function Offline(props) {
   };
 
   const pickDay = (date) => {
-    if (date?.getDay() === 0 || date?.getDay() === 2) {
+    if (date?.getDay() === 0 ) {
       return "9:00 - 10:00";
-    } else if (date?.getDay() === 4) {
-      return "9:00 - 15:00";
+      // return "15:00 - 16:00";
+    } else if (date?.getDay() === 4|| date?.getDay() === 2) {
+      return "15:00 - 16:00";
+      // return "9:00 - 10:00";
     } else return null;
   };
 
@@ -109,7 +111,7 @@ export default function Offline(props) {
       if (isAdd) window.alert("Bạn chỉ được chọn 3 ngành tham gia trải nghiệm");
     }
   };
- 
+
   const dataDepartment = useSelector(
     (state) => state.departmentReducer.dataDepartment.data
   );
@@ -122,8 +124,7 @@ export default function Offline(props) {
   return (
     <div className="body_off">
       {showTitle()}
-      <p id = 'note_message1'>Bạn chỉ được đăng ký lịch trước 1 tuần</p>
-
+      <p id="note_message1">Hệ thống chỉ hỗ trợ đăng ký trước 01 tuần</p>
       <div className="form_off">
         <div className="form_off_input">
           <div className="form_div">

@@ -388,6 +388,7 @@ div span label {
   .bottom_child_left {
     width: 100%;
     height: auto;
+    padding-bottom: 10px;
   }
   .bottom_child_right {
     width: 100%;

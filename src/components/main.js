@@ -298,7 +298,7 @@ const Main = () => {
   const toggleModal = () => {
     setModal(!modal);
   };
-
+ 
   return (
     <div className="background">
       
@@ -318,13 +318,29 @@ const Main = () => {
         </div>
       )} */}
       <span className="img_bottom">
-        <img
+        {window.width<600 ? <><img
           src="./img/smt.png"
+          // src="./img/imgBottom1.png"
           alt="logo1"
           width="100%"
           height="auto"
           style={{ position: "absolute", left: 0, bottom: 0, zIndex: -1 }}
-        ></img>
+        ></img></>:<><img
+        // src="./img/smt.png"
+        src="./img/imgBottom1.png"
+        alt="logo1"
+        width="100%"
+        height="auto"
+        style={{ position: "absolute", left: 0, bottom: 0, zIndex: -1 }}
+      ></img></>}
+        {/* <img
+          // src="./img/smt.png"
+          src="./img/imgBottom1.png"
+          alt="logo1"
+          width="100%"
+          height="auto"
+          style={{ position: "absolute", left: 0, bottom: 0, zIndex: -1 }}
+        ></img> */}
       </span>
       <span className="img_bottom">
         <img

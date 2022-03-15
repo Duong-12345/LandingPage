@@ -59,7 +59,8 @@
   background-position: center; */
   background-size: cover;
   background-repeat: no-repeat;
-  padding-bottom: 50vw;
+  padding-bottom: 30vw;
+  /* padding-bottom: 50vw; */
   width: 70%;
   margin: auto;
 }
@@ -117,7 +118,7 @@ p {
   max-width: 112px;
   height: 41px;
   border-radius: 10px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 10px 0 0 0;
   background-color: #f05e22;
   color: white;
@@ -125,16 +126,19 @@ p {
   font-size: larger;
   position: absolute;
   width: 33%;
+  z-index: 2;
 }
 .bottom_child_left {
   width: 390px;
   height: 140px;
   background-color: white;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 7px;
   border-radius: 0px 7px 7px 7px;
   padding: 34px 5px 0 7px;
   margin-top: 25px;
+  opacity: 80%;
+
 }
 .res_inf {
   display: flex;

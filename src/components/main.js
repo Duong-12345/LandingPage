@@ -59,6 +59,8 @@ const Main = () => {
     setValue((value) => ({
       ...value,
       province: e.target.value,
+      district:'',
+      school:''
     }));
   };
   const handleDistrict = (e) => {
@@ -66,6 +68,7 @@ const Main = () => {
     setValue((value) => ({
       ...value,
       district: e.target.value,
+      school:''
     }));
   };
   const handleSchool = (e) => {
@@ -87,7 +90,7 @@ const Main = () => {
     setValue((value) => ({
       ...value,
       amount: e.target.value,
-      arrayProgram: []
+      arrayProgram: [],
     }));
   };
 
@@ -140,6 +143,14 @@ const Main = () => {
     status: false,
   });
   const change = (e) => {
+    if(e.target.value==='tour_online'){
+      setValue({
+        ...value,
+        amount:'',
+        arrayProgram:[]
+      })
+    }
+    
     setInitSelect({
       value: e.target.value,
     });
@@ -150,10 +161,10 @@ const Main = () => {
   };
   const handleProgram = (e) => {
     console.log(e.target.checked);
-   
+
     e.persist();
     if (!e.target.checked) {
-      console.log('0')
+      console.log("0");
       let tmp = value.arrayProgram;
       let index = tmp.indexOf(e.target.value);
       if (index !== -1) {
@@ -175,9 +186,8 @@ const Main = () => {
           checked: e.target.checked,
         },
         arrayProgram: [...value.arrayProgram, e.target.value],
-      })
+      });
     }
-    
   };
   const handleDepartment = (e) => {
     e.persist();
@@ -215,7 +225,8 @@ const Main = () => {
         !value.province ||
         !value.school ||
         !value.arrayProgram.length ||
-        !value.day)
+        !value.day
+        )
       // !initSelect.value
     ) {
       return (
@@ -225,25 +236,27 @@ const Main = () => {
       );
     } else if (!submitted) {
       return null;
-    } else 
-    {
-      return  <>
-      { modal===false ? (
-        <div className="modal">
-          <div onClick={toggleModal} className="overlay"></div>
-          <div className="modal-content">
-            <h2>Đăng ký thành công!</h2>
-            <p>
-              Hẹn gặp lại các bạn tại Trường Đại học Phenikaa vào thời gian đã đăng ký!
-            </p>
-            <button className="close-modal" onClick={toggleModal}>
-              &times;
-            </button>
-          </div>
-        </div>
-      ): null}
-      <div className="success-message">Bạn đã đăng ký thành công</div>
-      </>
+    } else {
+      return (
+        <>
+          {modal === false ? (
+            <div className="modal">
+              <div onClick={toggleModal} className="overlay"></div>
+              <div className="modal-content">
+                <h2>Đăng ký thành công!</h2>
+                <p>
+                  Hẹn gặp lại các bạn tại Trường Đại học Phenikaa vào thời gian
+                  đã đăng ký!
+                </p>
+                <button className="close-modal" onClick={toggleModal}>
+                  &times;
+                </button>
+              </div>
+            </div>
+          ) : null}
+          <div className="success-message">Bạn đã đăng ký thành công</div>
+        </>
+      );
     }
     // <div className="success-message">Bạn đã gửi thành công</div>
   };
@@ -298,10 +311,9 @@ const Main = () => {
   const toggleModal = () => {
     setModal(!modal);
   };
- 
+
   return (
     <div className="background">
-      
       {/* { modal && (
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
@@ -318,29 +330,24 @@ const Main = () => {
         </div>
       )} */}
       <span className="img_bottom">
-        {window.width<600 ? <><img
+        <img
+          // src="./img/smt.png"
+          id="imgBottom1"
+          src="./img/imgBottom1.png"
+          alt="logo1"
+          width="100%"
+          height="auto"
+          style={{ position: "absolute", left: 0, bottom: 0, zIndex: -1 }}
+        ></img>
+        <img
+          id="smt"
           src="./img/smt.png"
           // src="./img/imgBottom1.png"
           alt="logo1"
           width="100%"
           height="auto"
           style={{ position: "absolute", left: 0, bottom: 0, zIndex: -1 }}
-        ></img></>:<><img
-        // src="./img/smt.png"
-        src="./img/imgBottom1.png"
-        alt="logo1"
-        width="100%"
-        height="auto"
-        style={{ position: "absolute", left: 0, bottom: 0, zIndex: -1 }}
-      ></img></>}
-        {/* <img
-          // src="./img/smt.png"
-          src="./img/imgBottom1.png"
-          alt="logo1"
-          width="100%"
-          height="auto"
-          style={{ position: "absolute", left: 0, bottom: 0, zIndex: -1 }}
-        ></img> */}
+        ></img>
       </span>
       <span className="img_bottom">
         <img
@@ -385,13 +392,14 @@ const Main = () => {
           </p>
           <p>
             Với mục tiêu giới thiệu, cung cấp thông tin tới Quý vị phụ huynh và
-            các em học sinh về Trường Đại học Phenikaa, <br></br>các ngành nghề đang được
-            đào tạo tại Trường, giúp các em có quyết định lựa chọn ngành nghề
-            đúng đắn,<br></br> Trường Đại học Phenikaa tổ chức chương trình trải nghiệm
-            "Phenikaa Campus Visit 2022".
+            các em học sinh về Trường Đại học Phenikaa, <br></br>các ngành nghề
+            đang được đào tạo tại Trường, giúp các em có quyết định lựa chọn
+            ngành nghề đúng đắn,<br></br> Trường Đại học Phenikaa tổ chức chương
+            trình trải nghiệm "Phenikaa Campus Visit 2022".
           </p>
           <p>
-            Chương trình được hỗ trợ <b style={{color: '#f05e22'}}>HOÀN TOÀN MIỄN PHÍ.</b>
+            Chương trình được hỗ trợ{" "}
+            <b style={{ color: "#f05e22" }}>HOÀN TOÀN MIỄN PHÍ.</b>
           </p>
           <p>Lịch đăng ký thời gian tham quan (dự kiến):</p>
           <div className="form_register">
@@ -404,7 +412,10 @@ const Main = () => {
                     alt="logo1"
                     className="phone_icon"
                   ></img>
-                  <p>09:00 buổi sáng/ 15:00 buổi chiều <br></br>Thứ Ba và Thứ Năm hàng tuần</p>
+                  <p>
+                    09:00 buổi sáng/ 15:00 buổi chiều <br></br>Thứ Ba và Thứ Năm
+                    hàng tuần
+                  </p>
                 </span>
                 <span className="bound_img_p">
                   <img
@@ -436,9 +447,7 @@ const Main = () => {
                     alt="logo1"
                     className="phone_icon"
                   ></img>
-                  <p>
-                    Online trên nền tảng Zoom
-                  </p>
+                  <p>Online trên nền tảng Zoom</p>
                 </span>
               </div>
             </div>
@@ -457,7 +466,7 @@ const Main = () => {
           </span>
 
           <p className="title_text_child">THÔNG TIN ĐĂNG KÝ</p>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} autoComplete='off'>
             <div className="form_res_inf">
               {/* <div className="form_res_name">
                 <div className="form_res_name_input">
@@ -626,8 +635,9 @@ const Main = () => {
                 </option>
               </select>
             </div>
-            <p id="note_message1" style={{textAlign:'left'}}>
-              Bạn có thể chọn hình thức trải nghiệm online bằng cách chọn ở ô phía trên
+            <p id="note_message1" style={{ textAlign: "left" }}>
+              Bạn có thể chọn hình thức trải nghiệm online bằng cách chọn ở ô
+              phía trên
             </p>
             {/* {submitted && !initSelect.value && (
                     <p id="note_message">Please choose the form you want to experience

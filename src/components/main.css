@@ -5,6 +5,9 @@
   position: relative;
   z-index: 1;
 }
+#smt{
+  display: none;
+}
 .close-modal {
   position: absolute;
   top: 10px;
@@ -393,5 +396,14 @@ div span label {
   .bottom_child_right {
     width: 100%;
     height: auto;
+  }
+  #imgBottom1{
+    display: none;
+  }
+  #smt{
+    display: initial;
+  }
+  .main{
+  padding-bottom: 50vw;
   }
 }

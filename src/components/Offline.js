@@ -66,10 +66,10 @@ export default function Offline(props) {
   };
 
   const pickDay = (date) => {
-    if (date?.getDay() === 0 ) {
+    if (date?.getDay() === 0) {
       return "9:00 - 10:00";
       // return "15:00 - 16:00";
-    } else if (date?.getDay() === 4|| date?.getDay() === 2) {
+    } else if (date?.getDay() === 4 || date?.getDay() === 2) {
       return "15:00 - 16:00";
       // return "9:00 - 10:00";
     } else return null;
@@ -162,6 +162,7 @@ export default function Offline(props) {
               value={props.time}
               placeholder="Thời gian sẽ tự động hiển thị theo chọn ngày bạn chọn"
               className="input"
+              readOnly
             ></input>
           </div>
           {}
@@ -244,7 +245,7 @@ export default function Offline(props) {
         </div>
         {props.submitted && !props.arrayProgram.length && (
           <p id="note_message_child">
-            Please select the departments you want to join{" "}
+            Please select the departments you want to join
           </p>
         )}
         <p>

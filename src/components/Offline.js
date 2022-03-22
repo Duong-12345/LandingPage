@@ -112,18 +112,18 @@ export default function Offline(props) {
     }
   };
 
-  const dataDepartment = useSelector(
-    (state) => state.departmentReducer.dataDepartment
-  );
   // const dataDepartment = useSelector(
-  //   (state) => state.departmentReducer.dataDepartment.data
+  //   (state) => state.departmentReducer.dataDepartment
   // );
-  const dataProgram = useSelector(
-    (state) => state.programReducer.dataProgram
+  const dataDepartment = useSelector(
+    (state) => state.departmentReducer.dataDepartment.data
   );
   // const dataProgram = useSelector(
-  //   (state) => state.programReducer.dataProgram.data
+  //   (state) => state.programReducer.dataProgram
   // );
+  const dataProgram = useSelector(
+    (state) => state.programReducer.dataProgram.data
+  );
 
   const dataDepartmentRight = dataDepartment?.slice(0, 7).reverse();
   const dataDepartmentLeft = dataDepartment?.slice(7, 13).reverse();

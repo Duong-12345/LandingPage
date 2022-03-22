@@ -95,24 +95,24 @@ const Main = () => {
   };
 
   const [submitted, setSubmitted] = useState(false);
-  const dataProvince = useSelector(
-    (state) => state.provinceReducer.dataProvince
-  );
   // const dataProvince = useSelector(
-  //   (state) => state.provinceReducer.dataProvince.data
+  //   (state) => state.provinceReducer.dataProvince
   // );
-  const dataDistrict = useSelector(
-    (state) => state.districtReducer.dataDistrict
+  const dataProvince = useSelector(
+    (state) => state.provinceReducer.dataProvince.data
   );
   // const dataDistrict = useSelector(
-  //   (state) => state.districtReducer.dataDistrict.data
+  //   (state) => state.districtReducer.dataDistrict
   // );
-  const dataSchool = useSelector(
-    (state) => state.schoolReducer.dataSchool
+  const dataDistrict = useSelector(
+    (state) => state.districtReducer.dataDistrict.data
   );
   // const dataSchool = useSelector(
-  //   (state) => state.schoolReducer.dataSchool.data
+  //   (state) => state.schoolReducer.dataSchool
   // );
+  const dataSchool = useSelector(
+    (state) => state.schoolReducer.dataSchool.data
+  );
   useEffect(() => {
     getProvince(dispatch);
     getSchool(dispatch);

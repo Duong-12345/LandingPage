@@ -1,12 +1,14 @@
 const getDepartmentMethod = async () => {
-  const URL = "http://10.20.2.201:5000/department";
+  const URL = "https://api-landing-pheni.herokuapp.com/api/department";
+  // const URL = "http://10.20.2.201:5000/department";
   const response = await fetch(URL, { method: "GET" });
   const data = await response.json();
   return data;
 };
 
 const getProgramMethod = async () => {
-  const URL = "http://10.20.2.201:5000/program";
+  const URL = "https://api-landing-pheni.herokuapp.com/api/program";
+  // const URL = "http://10.20.2.201:5000/program";
   const response = await fetch(URL, { method: "GET" });
   const data = await response.json();
   return data;

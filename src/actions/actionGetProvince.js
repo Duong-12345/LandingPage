@@ -1,5 +1,5 @@
 const getProvinceMethod = async () => {
-  const URL = "http://10.20.2.201:5000/province";
+  const URL = "http://10.20.2.238:5000/province";
   // const URL = "https://api-landing-pheni.herokuapp.com/api/province";
   const response = await fetch(URL, { method: "GET" });
   const data = await response.json();
@@ -7,7 +7,7 @@ const getProvinceMethod = async () => {
 };
 
 const getDistrictMethod = async () => {
-  const URL = "http://10.20.2.201:5000/district";
+  const URL = "http://10.20.2.238:5000/district";
   // const URL = "https://api-landing-pheni.herokuapp.com/api/district";
   const response = await fetch(URL, { method: "GET" });
   const data = await response.json();

@@ -5,18 +5,21 @@
   position: relative;
   z-index: 1;
 }
-#smt{
+#smt {
   display: none;
 }
-::placeholder{
+/* ::placeholder{
   font-size: small;
+} */
+input::-webkit-input-placeholder {
+  font-size: 1.2em;
 }
 .close-modal {
   position: absolute;
   top: 10px;
   right: 10px;
   padding: 5px 7px;
-  color:red;
+  color: red;
   font-weight: bolder;
   cursor: pointer;
 }
@@ -26,7 +29,7 @@
 .modal-content h2 {
   margin-top: 0;
   word-break: break-word;
-  color:#1087ff;
+  color: #1087ff;
 }
 .overlay {
   background: rgba(49, 49, 49, 0.8);
@@ -144,7 +147,6 @@ p {
   padding: 34px 5px 0 7px;
   margin-top: 25px;
   opacity: 80%;
-
 }
 .res_inf {
   display: flex;
@@ -383,7 +385,7 @@ div span label {
     width: 100%;
     background-color: white;
     height: 40px;
-    color:black
+    color: black;
   }
   .title_text {
     font-size: 20px;
@@ -401,13 +403,13 @@ div span label {
     width: 100%;
     height: auto;
   }
-  #imgBottom1{
+  #imgBottom1 {
     display: none;
   }
-  #smt{
+  #smt {
     display: initial;
   }
-  .main{
-  padding-bottom: 50vw;
+  .main {
+    padding-bottom: 50vw;
   }
 }

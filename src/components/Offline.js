@@ -70,7 +70,7 @@ export default function Offline(props) {
       return "9:00 - 10:00";
       // return "15:00 - 16:00";
     } else if (date?.getDay() === 4 || date?.getDay() === 2) {
-      return "15:00 - 16:00";
+      return "14:00 - 16:00";
       // return "9:00 - 10:00";
     } else return null;
   };

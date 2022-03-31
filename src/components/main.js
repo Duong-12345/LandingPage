@@ -423,7 +423,7 @@ const Main = () => {
                     className="phone_icon"
                   ></img>
                   <p>
-                    09:00 buổi sáng/ 15:00 buổi chiều <br></br>Thứ Ba và Thứ Năm
+                    09:00 buổi sáng/ 14:00 buổi chiều <br></br>Thứ Ba và Thứ Năm
                     hàng tuần
                   </p>
                 </span>

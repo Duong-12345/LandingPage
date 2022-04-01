@@ -1,4 +1,5 @@
-const url = "http://10.20.2.238:5000/";
+const url = "https://campusvisit.phenikaa-uni.edu.vn/api/";
+// const url = "http://10.20.2.238:5000/";
 
 export const postData = async (data) => {
   //   const URL = "http://10.20.2.238:5000/registration";

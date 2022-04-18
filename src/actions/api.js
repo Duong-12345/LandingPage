@@ -1,18 +1,21 @@
 const url = "https://campusvisit.phenikaa-uni.edu.vn/api/";
 // const url = "http://10.20.2.238:5000/";
 
+
 export const postData = async (data) => {
-  //   const URL = "http://10.20.2.238:5000/registration";
-  const URL = `${url}registration`;
-  // const URL = "https://api-landing-pheni.herokuapp.com/api";
+    // const URL = "http://10.20.2.238:5000/registration";
+  // const URL = `${url}registration`;
+  const URL = "https://api-landing-pheni.herokuapp.com/api1";
   // console.log(JSON.stringify(data));
+
   return fetch(URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-  }).then((response) => Promise.all([response, response.json()]));
+  }).then((response) => Promise.all([response, response.json()]))
+  // .catch(err => console.log(err))
 };
 
 export const getProvinceMethod = async () => {

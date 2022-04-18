@@ -65,31 +65,34 @@ export default function Offline(props) {
       );
   };
 
-  const pickDay = (date) => {
+  const pickDay =  (date) => {
     if (date?.getDay() === 0) {
       return "9:00 - 10:00";
-      // return "15:00 - 16:00";
-    } else if (date?.getDay() === 4 || date?.getDay() === 2) {
-      return "14:00 - 16:00";
-      // return "9:00 - 10:00";
-    } else return null;
+    }
+    else if (date?.getDay() === 4 || date?.getDay() === 2) {
+      return "9:00 - 10:00";
+    }
   };
-
+  
   const handleChangeDate = (date) => {
     setSelectedDate(date);
     props.handleDay(date, pickDay(date));
   };
-
-  // const handleChangeDepAndPro = ()=>{
-  //   props.handleDepartment();
-  //   props.handleProgram();
-  // }
+ 
   let curr = new Date();
   let first = curr.getDate() - curr.getDay() + 1;
   let second = first + 1;
   let third = first + 3;
   let last = first + 6;
 
+  let sunday, tuesday, thursday;
+  if (props.status === false) {
+    sunday = 0;
+  }
+  if (props.status === true) {
+    tuesday = 2;
+    thursday = 4;
+  }
   const countSelect = (e) => {
     let isAdd = e.target.checked;
     if (props.amount === "" && props.status === false) {
@@ -136,7 +139,7 @@ export default function Offline(props) {
           <div className="form_div">
             <label>Ngày tham gia trải nghiệm: </label>
             <DatePicker
-              selected={selectedDate}
+              selected={props.day}
               onChange={(date) => handleChangeDate(date)}
               dateFormat="dd/MM/yyyy"
               filterDate={(date) => {
@@ -145,30 +148,47 @@ export default function Offline(props) {
                   date.getDay() !== 1 &&
                   date.getDay() !== 3 &&
                   date.getDay() !== 5 &&
-                  // date.getTime() !== 1649523600000 &&
+                  date.getTime() !== 1649696400000 &&
                   date.getDate() !== second &&
                   date.getDate() !== third &&
-                  date.getDate() !== last
+                  date.getDate() !== last &&
+                  date.getDay() !== tuesday &&
+                  date.getDay() !== thursday &&
+                  date.getDay() !== sunday
                 )
                   return true;
+
                 return false;
               }}
               placeholderText="dd/MM/yyyy"
               required
+              minDate={new Date()}
             />
             {props.submitted && props.day == null && (
               <p id="note_message_child">Please enter participation time</p>
             )}
           </div>
           <div className="form_div">
+            {props.status === false ? (
+              <datalist id="time">
+                <option value="9:00-10:00" label="9:00-10:00"></option>
+                <option value="14:00-15:00" label="14:00-15:00"></option>
+              </datalist>
+            ) : null}
             <label className="time_off">Thời gian:</label>
             <input
               type="text"
               list="time"
               value={props.time}
-              placeholder="Thời gian sẽ tự động hiển thị theo chọn ngày bạn chọn"
+              onChange={(e) => { props.handleTime(e.target.value)}}
+              placeholder={
+                props.status === false
+                  ? "Bạn vui lòng chọn thời gian tham gia"
+                  : "Thời gian sẽ tự động điền khi bạn chọn ngày"
+              }
               className="input"
-              readOnly
+              // readOnly
+              required
             ></input>
           </div>
           {}

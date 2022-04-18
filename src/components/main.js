@@ -8,6 +8,7 @@ import { getSchool } from "../actions/actionGetSchool";
 import { getDepartment, getProgram } from "../actions/actionGetDepartment";
 import { Helmet } from "react-helmet";
 import moment from "moment";
+import emailjs from "emailjs-com";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -59,8 +60,8 @@ const Main = () => {
     setValue((value) => ({
       ...value,
       province: e.target.value,
-      district:'',
-      school:''
+      district: "",
+      school: "",
     }));
   };
   const handleDistrict = (e) => {
@@ -68,7 +69,7 @@ const Main = () => {
     setValue((value) => ({
       ...value,
       district: e.target.value,
-      school:''
+      school: "",
     }));
   };
   const handleSchool = (e) => {
@@ -82,6 +83,12 @@ const Main = () => {
     setValue({
       ...value,
       day: e,
+      time,
+    });
+  };
+  const handleTime = (time) => {
+    setValue({
+      ...value,
       time,
     });
   };
@@ -113,6 +120,9 @@ const Main = () => {
   const dataSchool = useSelector(
     (state) => state.schoolReducer.dataSchool.data
   );
+
+  const isFetching = useSelector((state) => state.dataForm.isFetching);
+  const error = useSelector((state) => state.dataForm.error);
   useEffect(() => {
     getProvince(dispatch);
     getSchool(dispatch);
@@ -122,9 +132,8 @@ const Main = () => {
   }, []);
   const arrayDepartmentFix = [...new Set(value.arrayDepartment)];
   const date = moment(value.day).format("YYYY-MM-DDThh:mm:ssZ");
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
     window.scroll(0, 0);
     const data = {
       name: value.name,
@@ -140,7 +149,17 @@ const Main = () => {
       programCodes: value.arrayProgram,
       departmentCodes: arrayDepartmentFix,
     };
-    postDataForm(data, dispatch);
+    const isError = await postDataForm(data, dispatch);
+    setSubmitted(true);
+    setModal(false);
+    emailjs.sendForm(
+      "gmail_campus",
+      "template_qxrnocn",
+      e.target,
+      "user_rCtFDb7ddHXxqmCJ96SKW"
+    ).then(res=>{
+      console.log(res);
+    }).catch(err=>console.log(err));
   };
   const [initSelect, setInitSelect] = useState(() => {
     return {
@@ -152,14 +171,25 @@ const Main = () => {
     status: false,
   });
   const change = (e) => {
-    if(e.target.value==='tour_online'){
+    if (e.target.value === "tour_online") {
       setValue({
         ...value,
-        amount:'',
-        arrayProgram:[]
-      })
+        amount: 1,
+        arrayProgram: [],
+        time: "",
+        day: "",
+      });
     }
-    
+    if (e.target.value === "tour_offline") {
+      setValue({
+        ...value,
+        amount: "",
+        arrayProgram: [],
+        time: "",
+        day: "",
+      });
+    }
+
     setInitSelect({
       value: e.target.value,
     });
@@ -169,8 +199,6 @@ const Main = () => {
     return on;
   };
   const handleProgram = (e) => {
-    console.log(e.target.checked);
-
     e.persist();
     if (!e.target.checked) {
       console.log("0");
@@ -231,11 +259,11 @@ const Main = () => {
       (!value.name ||
         !value.email ||
         !value.phone ||
-        !value.province ||
-        !value.school ||
+        !processText1(inputText) ||
+        !processText1(inputText3) ||
+        !processText1(inputText1) ||
         !value.arrayProgram.length ||
-        !value.day
-        )
+        !value.day)
       // !initSelect.value
     ) {
       return (
@@ -243,19 +271,19 @@ const Main = () => {
           Bạn thiếu một trường thông tin chưa điền
         </div>
       );
-    } else if (!submitted) {
-      return null;
-    } else {
+    } else if (submitted && isFetching === false && error === true) {
       return (
         <>
           {modal === false ? (
             <div className="modal">
               <div onClick={toggleModal} className="overlay"></div>
               <div className="modal-content">
-                <h2>Đăng ký thành công!</h2>
+                <h2 style={{ color: "#E74C3C", fontSize: "larger" }}>
+                  Đăng ký không thành công!
+                </h2>
                 <p>
-                  Hẹn gặp lại các bạn tại Trường Đại học Phenikaa vào thời gian
-                  đã đăng ký!
+                  Bạn vui lòng kiểm tra lại các thông tin đã điền và nhấn lại
+                  nút gửi !
                 </p>
                 <button className="close-modal" onClick={toggleModal}>
                   &times;
@@ -263,11 +291,41 @@ const Main = () => {
               </div>
             </div>
           ) : null}
-          <div className="success-message">Bạn đã đăng ký thành công</div>
+        </>
+      );
+    } else if (!submitted) {
+      return null;
+    } else {
+      return (
+        <>
+          {modal === false ? (
+            <>
+              <div className="modal">
+                <div onClick={toggleModal} className="overlay"></div>
+                <div className="modal-content">
+                  <h2>Đăng ký thành công!</h2>
+                  <p>
+                    Hẹn gặp lại các bạn tại Trường Đại học Phenikaa vào thời
+                    gian đã đăng ký!
+                  </p>
+                  <p>
+                    Vui lòng kiểm tra hòm thư để nhận thông báo đặt lịch thành
+                    công.
+                  </p>
+                  <button className="close-modal" onClick={toggleModal}>
+                    &times;
+                  </button>
+                </div>
+              </div>
+              {/* <div className="success-message">Bạn đã đăng ký thành công</div> */}
+            </>
+          ) : null}
+          {submitted && isFetching === false && (
+            <div className="success-message">Bạn đã gửi thành công</div>
+          )}
         </>
       );
     }
-    // <div className="success-message">Bạn đã gửi thành công</div>
   };
   var inputText = value.province;
   const processText = (inputText) => {
@@ -281,6 +339,7 @@ const Main = () => {
     }
     return newProvince;
   };
+  console.log(value);
   var inputText1 = value.district;
   const processText1 = (inputText1) => {
     var output = [];
@@ -479,7 +538,7 @@ const Main = () => {
           </span>
 
           <p className="title_text_child">THÔNG TIN ĐĂNG KÝ</p>
-          <form onSubmit={handleSubmit} autoComplete='off'>
+          <form onSubmit={handleSubmit} autoComplete="off">
             <div className="form_res_inf">
               {/* <div className="form_res_name">
                 <div className="form_res_name_input">
@@ -548,12 +607,16 @@ const Main = () => {
                   <>
                     {
                       <datalist id="province">
-                        {dataProvince?.map((e) => (
-                          <option
-                            value={e.name + " - " + e.code}
-                            name={e.code}
-                          ></option>
-                        ))}
+                        {dataProvince?.length === 0 ? (
+                          <option value="Chưa tải được danh sách Tỉnh, bạn vui lòng reload lại trang này"></option>
+                        ) : (
+                          dataProvince?.map((e) => (
+                            <option
+                              value={e.name + " - " + e.code}
+                              name={e.code}
+                            ></option>
+                          ))
+                        )}
                       </datalist>
                     }
                   </>
@@ -578,7 +641,7 @@ const Main = () => {
                   }))}
                   /> */}
 
-                  {submitted && !value.province && (
+                  {submitted && !processText(inputText) && (
                     <p id="note_message">Please enter a province</p>
                   )}
                 </span>
@@ -606,7 +669,7 @@ const Main = () => {
                     required
                   ></input>
 
-                  {submitted && !value.district && (
+                  {submitted && !processText1(inputText1) && (
                     <p id="note_message">Please enter a province</p>
                   )}
                 </span>
@@ -630,7 +693,7 @@ const Main = () => {
                     onChange={handleSchool}
                     required
                   ></input>
-                  {submitted && !value.school && (
+                  {submitted && !processText1(inputText3) && (
                     <p id="note_message">Please enter a high school</p>
                   )}
                 </span>
@@ -640,7 +703,7 @@ const Main = () => {
               <p className="title_text_child">HÌNH THỨC TRẢI NGHIỆM</p>
               <select onChange={change} value={initSelect.value}>
                 {/* <option disabled >Bạn chọn hình thức trải nghiệm nào ?</option> */}
-                <option value="tour_ofline">
+                <option value="tour_offline">
                   In person Campus Tour-1h(Campus Tour Offline + Tour guide)
                 </option>
                 <option value="tour_online">
@@ -660,6 +723,7 @@ const Main = () => {
               // !initSelect.value ? <div className="select_message">Bạn hãy chọn hình thức trải nghiệm</div> :
               <Offline
                 handleDay={handleDay}
+                handleTime={handleTime}
                 handleAmount={handleAmount}
                 amount={value.amount}
                 day={value.day}

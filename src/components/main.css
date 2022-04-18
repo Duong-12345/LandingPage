@@ -13,6 +13,7 @@
 } */
 input::-webkit-input-placeholder {
   font-size: 1.2em;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 .close-modal {
   position: absolute;

@@ -6,6 +6,7 @@ const initState = {
     dataDistrict:[],
     dataDepartment:[],
     dataProgram:[],
+    error: false
 }
 
 export const dataReducer = (state=initState, action)=>{
@@ -25,7 +26,8 @@ export const dataReducer = (state=initState, action)=>{
         case 'POST_DATA_ERROR':{
             return {
                 ...state,
-                isFetching: false
+                isFetching: false,
+                error: true
             }
         }
         default:

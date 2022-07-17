@@ -222,6 +222,9 @@ const Main = () => {
       sch.provinceCode == processText(inputText)
   );
   // console.log(processText1(inputText1));
+
+  console.log("adfadfadfa")
+  
   return (
     <div className="main">
       <Helmet>

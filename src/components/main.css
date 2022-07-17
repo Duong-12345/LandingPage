@@ -1,7 +1,8 @@
 .main {
   /* background-color: #acdee7; */
-  background-image: linear-gradient(to bottom, #acdee7, rgba(255, 0, 0, 0));
+  /* background-image: linear-gradient(to bottom, #acdee7, rgba(255, 0, 0, 0)); */
   width: 100%;
+  background-image: url('./img/background.png');
 }
 .body {
   width: 80%;
@@ -146,9 +147,9 @@ div span label {
   .form_res_name p {
     margin: 0;
   }
-  .res_inf_email{
+  /* .res_inf_email{
     margin:0
-  }
+  } */
 }
 @media screen and (max-width: 1408px) and (min-width: 1328px) {
   div span label {

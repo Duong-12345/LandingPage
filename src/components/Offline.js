@@ -60,16 +60,16 @@ export default function Offline(props) {
         </p>
       );
   };
- 
+
   const pickDay = (date) => {
     if (date?.getDay() === 0 || date?.getDay() === 2) {
       return "8:00 - 10:30"
     } else if (date?.getDay() === 4) {
-      return   "13:30 - 16:00";
+      return "13:30 - 16:00";
     } else return null;
   };
 
-  const handleChangeDate =  (date) => {
+  const handleChangeDate = (date) => {
     setSelectedDate(date);
     props.handleDay(date, pickDay(date));
   };
@@ -80,12 +80,12 @@ export default function Offline(props) {
   let third = first + 3;
   let last = first + 6;
 
-  const countSelect = (e)=>{
-    if(props.amount ==='' && props.array.length >= 3){
+  const countSelect = (e) => {
+    if (props.amount === '' && props.array.length >= 3) {
       e.target.checked = false
       alert('Mỗi người được chọn 3 ngành muốn trải nghiệm')
     }
-    else if(props.amount !== '' && props.array.length >= 3 * props.amount){
+    else if (props.amount !== '' && props.array.length >= 3 * props.amount) {
       e.target.checked = false
       alert('Bạn được chọn 3 ngành/người tham gia trải nghiệm')
     }
@@ -94,17 +94,17 @@ export default function Offline(props) {
   const dataDepartment = useSelector(
     (state) => state.departmentReducer.dataDepartment.data
   );
-  const dataProgram= useSelector(
+  const dataProgram = useSelector(
     (state) => state.programReducer.dataProgram.data
   );
-  //  dataProgram?.forEach(element => {
-  //   dataDepartment.forEach(dep=>{
-  //     if(element.departmentCode===dep.code){
-  //       element.nameDepartment = dep.name
-  //     }
-  //   })
-  // });
-  
+  dataProgram?.forEach(element => {
+    dataDepartment.forEach(dep => {
+      if (element.departmentCode === dep.code) {
+        element.nameDepartment = dep.name
+      }
+    })
+  });
+
   // dataDepartment?.forEach(element => {
   //   dataProgram?.forEach(dep=>{
   //     if(element.code===dep.departmentCode){
@@ -113,8 +113,13 @@ export default function Offline(props) {
   //     }
   //   })
   // });
-  // const dataDepartmentLeft = dataProgram.slice(0,13)
-// console.log('đấ')
+  const dataDepartmentLeft = dataProgram?.slice(0, 13)
+  const show = ()=>{
+    for (var i = 0; i<= dataDepartmentLeft; i ++){
+      console.log(i)
+    }
+  }
+  console.log(props)
   return (
     <div className="body_off">
       {showTitle()}
@@ -157,7 +162,7 @@ export default function Offline(props) {
               className="input"
             ></input>
           </div>
-          {}
+          { }
           {showAmount()}
         </div>
         <p>
@@ -167,41 +172,49 @@ export default function Offline(props) {
           className="bound_container"
           value={props.department.val}
           onChange={props.handleDepartment}
+          name={props.department.name}
         >
           <div className="container_left">
-            {departmentLeft.map(e=>(
+            {departmentLeft.map(e => (
               !e.value ? <p>
-              <b>{e.name}</b>
-            </p> : <label className="container">
-              <p>{e.name}</p>
-              <input type="checkbox" value={e.value} onClick={countSelect} name='checkbox'></input>
-              <span className="checkmark"></span>
-            </label>
+                <b>{e.name}</b>
+              </p> : <label className="container">
+                <p>{e.name}</p>
+                <input type="checkbox" value={e.value} onClick={countSelect} name={e.name}></input>
+                <span className="checkmark"></span>
+              </label>
             ))}
-            {/* {dataDepartmentLeft.map(e=>(
-              <>
-               <p>
-              <b>{e.nameDepartment}</b>
-            </p>
-            <label className="container">
-              <p>{e.name}</p>
-              <input type="checkbox" value={e.value} onClick={countSelect} name='checkbox'></input>
-              <span className="checkmark"></span>
-            </label>
-              </>
-            ))} */}
+            {/* {
+              dataDepartmentLeft.forEach((e, index) => {
+                if (e[index].departmentCode === e[index - 1].departmentCode) {
+                  return <label className="container">
+                    <p>{e.name}</p>
+                    <input type="checkbox" value={e.value} onClick={countSelect} name='checkbox'></input>
+                    <span className="checkmark"></span>
+                  </label>
+                }
+                else return <><p>
+                  <b>{e.name}</b>
+                </p>
+                  <label className="container">
+                    <p>{e.name}</p>
+                    <input type="checkbox" value={e.value} onClick={countSelect} name='checkbox'></input>
+                    <span className="checkmark"></span>
+                  </label></>
+              })
+            } */}
           </div>
           <div className="container_right">
-            {departmentRight.map(e=>(
+            {departmentRight.map(e => (
               !e.value ? <p>
-              <b>{e.name}</b>
-            </p> : <label className="container">
-              <p>{e.name}</p>
-              <input type="checkbox" value={e.value} onClick={countSelect} name='checkbox'></input>
-              <span className="checkmark"></span>
-            </label>
+                <b>{e.name}</b>
+              </p> : <label className="container">
+                <p>{e.name}</p>
+                <input type="checkbox" value={e.value} onClick={countSelect} name={e.name}></input>
+                <span className="checkmark"></span>
+              </label>
             ))}
-            
+
           </div>
         </div>
         {props.submitted && !props.array.length && (

@@ -144,7 +144,7 @@ const Main = () => {
     e.persist();
     if (!e.target.checked) {
       let tmp = value.array;
-      let index = tmp.indexOf(e.target.value);
+      let index = tmp.indexOf(e.target.name);
       if (index !== -1) {
         tmp.splice(index, 1);
       }
@@ -160,13 +160,14 @@ const Main = () => {
       setValue({
         ...value,
         department: {
-          val: e.target.value,
+          val: e.target.name,
           checked: e.target.checked,
         },
-        array: [...value.array, e.target.value],
+        array: [...value.array, e.target.name],
       });
     }
   };
+  console.log(value.array)
   const messageSuccess = () => {
     if (
       submitted &&
@@ -222,6 +223,9 @@ const Main = () => {
       sch.provinceCode == processText(inputText)
   );
   // console.log(processText1(inputText1));
+
+  console.log('changing for testing ')
+  
   return (
     <div className="main">
       <Helmet>

@@ -1,9 +1,5 @@
-const getSchoolMethod = async () => {
-  const URL = "http://10.20.2.201:5000/school";
-  const response = await fetch(URL, { method: "GET" });
-  const data = await response.json();
-  return data;
-};
+import { getSchoolMethod } from "./api";
+
 
 export const getSchoolRequest = () => {
   return {

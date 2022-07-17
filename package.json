@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "emailjs-com": "^3.2.0",
     "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-calendar": "^3.7.0",
@@ -15,6 +16,7 @@
     "react-helmet": "^6.1.0",
     "react-redux": "^7.2.6",
     "react-scripts": "5.0.0",
+    "react-select": "^5.2.2",
     "redux": "^4.1.2",
     "web-vitals": "^2.1.4"
   },
@@ -41,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "url-loader": "^4.1.1"
   }
 }

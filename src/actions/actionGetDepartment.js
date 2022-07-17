@@ -1,16 +1,4 @@
-const getDepartmentMethod = async () => {
-  const URL = "http://10.20.2.201:5000/department";
-  const response = await fetch(URL, { method: "GET" });
-  const data = await response.json();
-  return data;
-};
-
-const getProgramMethod = async () => {
-  const URL = "http://10.20.2.201:5000/program";
-  const response = await fetch(URL, { method: "GET" });
-  const data = await response.json();
-  return data;
-};
+import { getDepartmentMethod, getProgramMethod } from "./api";
 
 export const getDepartmentRequest = () => {
   return {

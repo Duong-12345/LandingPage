@@ -1,16 +1,4 @@
-const getProvinceMethod = async () => {
-  const URL = "http://10.20.2.201:5000/province";
-  const response = await fetch(URL, { method: "GET" });
-  const data = await response.json();
-  return data;
-};
-
-const getDistrictMethod = async () => {
-  const URL = "http://10.20.2.201:5000/district";
-  const response = await fetch(URL, { method: "GET" });
-  const data = await response.json();
-  return data;
-};
+import { getDistrictMethod, getProvinceMethod } from "./api";
 
 export const getProvinceRequest = () => {
   return {

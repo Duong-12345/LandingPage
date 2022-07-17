@@ -6,7 +6,7 @@ const rootReducer = combineReducers({
     schoolReducer: shoolReducer,
     districtReducer: districtReducer,
     departmentReducer: departmentReducer,
-    programReducer: programReducer
+    programReducer: programReducer,
 });
 export default rootReducer;
 

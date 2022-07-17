@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 
 export default function Offline(props) {
   const [selectedDate, setSelectedDate] = useState(props.day);
+
   const showAmount = () => {
     if (props.status === false) {
       return (
@@ -45,85 +46,100 @@ export default function Offline(props) {
   const showTitle = () => {
     if (props.status === false) {
       return (
-        <p id="tittle_off">
-          <b>In person Campus Tour-1h</b>
-          <br></br>
-          (Campus Tour Offline + Tour guide)
-        </p>
+        <>
+          <p id="tittle_off">
+            <b>In person Campus Tour-1h</b>
+            <br></br>
+            (Campus Tour Offline + Tour guide)
+          </p>
+          {/* <p>Bạn chỉ được đăng ký lịch trước 1 tuần</p> */}
+        </>
       );
     } else
       return (
         <p id="tittle_off">
-          <b>Virtual Campus Tour 30'</b>
+          <b>Virtual Campus Tour-30p</b>
           <br></br>
           (Tour Offline + Tour guide)
         </p>
       );
   };
- 
-  const pickDay = (date) => {
-    if (date?.getDay() === 0 || date?.getDay() === 2) {
-      return "8:00 - 10:30"
-    } else if (date?.getDay() === 4) {
-      return   "13:30 - 16:00";
-    } else return null;
-  };
 
-  const handleChangeDate =  (date) => {
+  const pickDay =  (date) => {
+    if (date?.getDay() === 0) {
+      return "9:00 - 10:00";
+    }
+    else if (date?.getDay() === 4 || date?.getDay() === 2) {
+      return "9:00 - 10:00";
+    }
+  };
+  
+  const handleChangeDate = (date) => {
     setSelectedDate(date);
     props.handleDay(date, pickDay(date));
   };
-
+ 
   let curr = new Date();
   let first = curr.getDate() - curr.getDay() + 1;
   let second = first + 1;
   let third = first + 3;
   let last = first + 6;
 
-  const countSelect = (e)=>{
-    if(props.amount ==='' && props.array.length >= 3){
-      e.target.checked = false
-      alert('Mỗi người được chọn 3 ngành muốn trải nghiệm')
-    }
-    else if(props.amount !== '' && props.array.length >= 3 * props.amount){
-      e.target.checked = false
-      alert('Bạn được chọn 3 ngành/người tham gia trải nghiệm')
-    }
+  let sunday, tuesday, thursday;
+  if (props.status === false) {
+    sunday = 0;
   }
+  if (props.status === true) {
+    tuesday = 2;
+    thursday = 4;
+  }
+  const countSelect = (e) => {
+    let isAdd = e.target.checked;
+    if (props.amount === "" && props.status === false) {
+      alert("Bạn cần chọn số lượng người tham gia trước khi tích chọn");
+      e.target.checked = false;
+    } else if (
+      props.amount !== "" &&
+      props.arrayProgram.length >= 3 * props.amount
+    ) {
+      e.target.checked = false;
+      if (isAdd)
+        window.alert("Bạn chỉ được chọn 3 ngành/ 1 người tham gia trải nghiệm");
+    } else if (
+      props.amount === "" &&
+      props.status === true &&
+      props.arrayProgram.length >= 3
+    ) {
+      e.target.checked = false;
+      if (isAdd) window.alert("Bạn chỉ được chọn 3 ngành tham gia trải nghiệm");
+    }
+  };
 
+  // const dataDepartment = useSelector(
+  //   (state) => state.departmentReducer.dataDepartment
+  // );
   const dataDepartment = useSelector(
     (state) => state.departmentReducer.dataDepartment.data
   );
-  const dataProgram= useSelector(
+  // const dataProgram = useSelector(
+  //   (state) => state.programReducer.dataProgram
+  // );
+  const dataProgram = useSelector(
     (state) => state.programReducer.dataProgram.data
   );
-  //  dataProgram?.forEach(element => {
-  //   dataDepartment.forEach(dep=>{
-  //     if(element.departmentCode===dep.code){
-  //       element.nameDepartment = dep.name
-  //     }
-  //   })
-  // });
-  
-  // dataDepartment?.forEach(element => {
-  //   dataProgram?.forEach(dep=>{
-  //     if(element.code===dep.departmentCode){
-  //       var rong = []
-  //       element.nameProgram= rong.push(dep.name)
-  //     }
-  //   })
-  // });
-  // const dataDepartmentLeft = dataProgram.slice(0,13)
-// console.log('đấ')
+
+  const dataDepartmentRight = dataDepartment?.slice(0, 7).reverse();
+  const dataDepartmentLeft = dataDepartment?.slice(7, 13).reverse();
   return (
     <div className="body_off">
       {showTitle()}
+      <p id="note_message1">Hệ thống chỉ hỗ trợ đăng ký trước 01 tuần</p>
       <div className="form_off">
         <div className="form_off_input">
           <div className="form_div">
             <label>Ngày tham gia trải nghiệm: </label>
             <DatePicker
-              selected={selectedDate}
+              selected={props.day}
               onChange={(date) => handleChangeDate(date)}
               dateFormat="dd/MM/yyyy"
               filterDate={(date) => {
@@ -132,29 +148,47 @@ export default function Offline(props) {
                   date.getDay() !== 1 &&
                   date.getDay() !== 3 &&
                   date.getDay() !== 5 &&
-                  // date.getTime() !== 1649523600000 &&
+                  date.getTime() !== 1649696400000 &&
                   date.getDate() !== second &&
                   date.getDate() !== third &&
-                  date.getDate() !== last
+                  date.getDate() !== last &&
+                  date.getDay() !== tuesday &&
+                  date.getDay() !== thursday &&
+                  date.getDay() !== sunday
                 )
                   return true;
+
                 return false;
               }}
               placeholderText="dd/MM/yyyy"
               required
+              minDate={new Date()}
             />
             {props.submitted && props.day == null && (
               <p id="note_message_child">Please enter participation time</p>
             )}
           </div>
           <div className="form_div">
+            {props.status === false ? (
+              <datalist id="time">
+                <option value="9:00-10:00" label="9:00-10:00"></option>
+                <option value="14:00-15:00" label="14:00-15:00"></option>
+              </datalist>
+            ) : null}
             <label className="time_off">Thời gian:</label>
             <input
               type="text"
               list="time"
               value={props.time}
-              placeholder="Thời gian sẽ tự động hiển thị theo chọn ngày bạn chọn"
+              onChange={(e) => { props.handleTime(e.target.value)}}
+              placeholder={
+                props.status === false
+                  ? "Bạn vui lòng chọn thời gian tham gia"
+                  : "Thời gian sẽ tự động điền khi bạn chọn ngày"
+              }
               className="input"
+              // readOnly
+              required
             ></input>
           </div>
           {}
@@ -165,48 +199,79 @@ export default function Offline(props) {
         </p>
         <div
           className="bound_container"
-          value={props.department.val}
-          onChange={props.handleDepartment}
+          value={props.program.val}
+          onChange={props.handleProgram}
+          name={props.department.name}
+          onInput={props.handleDepartment}
         >
           <div className="container_left">
-            {departmentLeft.map(e=>(
-              !e.value ? <p>
-              <b>{e.name}</b>
-            </p> : <label className="container">
-              <p>{e.name}</p>
-              <input type="checkbox" value={e.value} onClick={countSelect} name='checkbox'></input>
-              <span className="checkmark"></span>
-            </label>
-            ))}
-            {/* {dataDepartmentLeft.map(e=>(
-              <>
-               <p>
-              <b>{e.nameDepartment}</b>
-            </p>
-            <label className="container">
-              <p>{e.name}</p>
-              <input type="checkbox" value={e.value} onClick={countSelect} name='checkbox'></input>
-              <span className="checkmark"></span>
-            </label>
-              </>
-            ))} */}
+            {dataDepartmentLeft?.map((dep) => {
+              let tmpProgram = dataProgram?.filter(
+                (pro) => pro.departmentCode === dep.code
+              );
+              return (
+                <>
+                  <p>
+                    <b>{dep.name}</b>
+                  </p>
+                  {tmpProgram?.map((tmpPro) => {
+                    return (
+                      <label className="container">
+                        <p>{tmpPro.name}</p>
+                        <input
+                          type="checkbox"
+                          value={tmpPro.code}
+                          onClick={countSelect}
+                          name={dep.code}
+                          className="checkbox"
+                          checked={
+                            props.arrayProgram.indexOf(tmpPro.code) !== -1
+                          }
+                        ></input>
+                        <span className="checkmark"></span>
+                      </label>
+                    );
+                  })}
+                </>
+              );
+            })}
           </div>
           <div className="container_right">
-            {departmentRight.map(e=>(
-              !e.value ? <p>
-              <b>{e.name}</b>
-            </p> : <label className="container">
-              <p>{e.name}</p>
-              <input type="checkbox" value={e.value} onClick={countSelect} name='checkbox'></input>
-              <span className="checkmark"></span>
-            </label>
-            ))}
-            
+            {dataDepartmentRight?.map((dep) => {
+              let tmpProgram = dataProgram?.filter(
+                (pro) => pro.departmentCode === dep.code
+              );
+              return (
+                <>
+                  <p>
+                    <b>{dep.name}</b>
+                  </p>
+                  {tmpProgram?.map((tmpPro) => {
+                    return (
+                      <label className="container">
+                        <p>{tmpPro.name}</p>
+                        <input
+                          type="checkbox"
+                          value={tmpPro.code}
+                          onClick={countSelect}
+                          name={dep.code}
+                          checked={
+                            props.arrayProgram.indexOf(tmpPro.code) !== -1
+                          }
+                          className="checkbox"
+                        ></input>
+                        <span className="checkmark"></span>
+                      </label>
+                    );
+                  })}
+                </>
+              );
+            })}
           </div>
         </div>
-        {props.submitted && !props.array.length && (
+        {props.submitted && !props.arrayProgram.length && (
           <p id="note_message_child">
-            Please select the departments you want to join{" "}
+            Please select the departments you want to join
           </p>
         )}
         <p>
